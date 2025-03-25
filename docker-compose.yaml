@@ -1,0 +1,63 @@
+version: '2' 
+
+services:
+
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+    env_file:
+      - ./hadoop/hadoop.env
+    ports:
+      - 9870:9870
+      - 9000:9000
+    networks:
+      - shared_network
+
+  datanode1:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode1
+    depends_on: 
+      - namenode
+    volumes:
+      - hadoop_datanode1:/hadoop/dfs/data
+    env_file:
+      - ./hadoop/hadoop.env
+    networks:
+      - shared_network
+
+  datanode2:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode2
+    depends_on: 
+      - namenode
+    volumes:
+      - hadoop_datanode2:/hadoop/dfs/data
+    env_file:
+      - ./hadoop/hadoop.env
+    networks:
+      - shared_network
+  
+  hue:
+    image: gethue/hue:20201111-135001
+    hostname: hue
+    container_name: hue
+    dns: 8.8.8.8
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./hue/conf.dist:/usr/share/hue/desktop/conf
+    depends_on: 
+      - namenode
+    networks:
+      - shared_network
+
+volumes:
+  hadoop_namenode: {}
+  hadoop_datanode1: {}
+  hadoop_datanode2: {}
+
+networks:
+  shared_network:
+    driver: bridge
