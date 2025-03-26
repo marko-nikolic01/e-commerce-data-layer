@@ -2,6 +2,18 @@ version: '2'
 
 services:
 
+  data-generator:
+    build:
+      context: ./data_generator
+    container_name: data-generator
+    volumes:
+      - ./data_generator/data/:/app/data/
+      - ./data/:/app/generated_data/
+    depends_on:
+      - namenode
+    networks:
+      - shared_network
+  
   namenode:
     image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
     container_name: namenode
@@ -12,6 +24,7 @@ services:
     ports:
       - 9870:9870
       - 9000:9000
+      - 50070:50070
     networks:
       - shared_network
 
@@ -47,9 +60,38 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - ./hue/conf.dist:/usr/share/hue/desktop/conf
+      - ./hadoop/hue/conf.dist:/usr/share/hue/desktop/conf
     depends_on: 
       - namenode
+    networks:
+      - shared_network
+
+  nifi:
+    image: apache/nifi:1.15.3
+    container_name: nifi
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./data/:/tmp/data/
+      - ./nifi/hdfs/core-site.xml:/opt/nifi/nifi-current/conf/core-site.xml
+      - nifi_conf:/opt/nifi/nifi-current/conf
+      - nifi_database_repository:/opt/nifi/nifi-current/database_repository
+      - nifi_flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
+      - nifi_content_repository:/opt/nifi/nifi-current/content_repository
+      - nifi_provenance_repository:/opt/nifi/nifi-current/provenance_repository
+      - nifi_state:/opt/nifi/nifi-current/state
+    env_file:
+      - ./nifi/nifi.env
+    networks:
+      - shared_network
+
+  nifi-registry:
+    image: apache/nifi-registry:1.15.3
+    container_name: nifi-registry
+    ports:
+      - "18080:18080"
+    volumes:
+      - nifi_registry:/opt/nifi-registry/nifi-registry-current/
     networks:
       - shared_network
 
@@ -57,6 +99,13 @@ volumes:
   hadoop_namenode: {}
   hadoop_datanode1: {}
   hadoop_datanode2: {}
+  nifi_conf: {}
+  nifi_database_repository: {}
+  nifi_flowfile_repository: {}
+  nifi_content_repository: {}
+  nifi_provenance_repository: {}
+  nifi_state: {}
+  nifi_registry: {}
 
 networks:
   shared_network:
