@@ -24,7 +24,6 @@ services:
     ports:
       - 9870:9870
       - 9000:9000
-      - 50070:50070
     networks:
       - shared_network
 
@@ -66,6 +65,37 @@ services:
     networks:
       - shared_network
 
+  hive-server:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-server
+    env_file:
+      - ./hadoop/hadoop.env
+      - ./hadoop/hive/server.env
+    ports:
+      - "10000:10000"
+    networks:
+      - shared_network
+  
+  hive-metastore:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-metastore
+    env_file:
+      - ./hadoop/hadoop.env
+      - ./hadoop/hive/metastore.env
+    command: /opt/hive/bin/hive --service metastore
+    ports:
+      - "9083:9083"
+    networks:
+      - shared_network
+  
+  hive-metastore-postgresql:
+    image: bde2020/hive-metastore-postgresql:2.3.0
+    container_name: hive-metastore-postgresql
+    volumes:
+      - hive-metastore-db:/var/lib/postgresql/data
+    networks:
+      - shared_network
+
   nifi:
     image: apache/nifi:1.15.3
     container_name: nifi
@@ -95,10 +125,102 @@ services:
     networks:
       - shared_network
 
+  spark-master:
+    build:
+      context: ./spark
+      dockerfile: Dockerfile
+    container_name: spark-master
+    ports:
+      - "9090:8080"
+      - "7077:7077"
+      - "2222:22"
+    env_file:
+      - ./spark/spark.env
+    volumes: 
+      - ./spark/scripts:/opt/bitnami/spark/jobs
+      - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
+      - ./jenkins/logs:/opt/bitnami/spark/logs 
+    networks:
+      - shared_network
+
+  spark-worker1:
+    build:
+      context: ./spark
+      dockerfile: Dockerfile
+    container_name: spark-worker1
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=2g
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    env_file:
+      - ./spark/spark.env
+    volumes: 
+      - ./spark/scripts:/opt/bitnami/spark/jobs
+      - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
+      - ./jenkins/logs:/opt/bitnami/spark/logs 
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    networks:
+      - shared_network
+
+  spark-worker2:
+    build:
+      context: ./spark
+      dockerfile: Dockerfile
+    container_name: spark-worker2
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=2g
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    env_file:
+      - ./spark/spark.env
+    volumes: 
+      - ./spark/scripts:/opt/bitnami/spark/jobs
+      - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
+      - ./jenkins/logs:/opt/bitnami/spark/logs 
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    networks:
+      - shared_network
+
+  spark-worker3:
+    build:
+      context: ./spark
+      dockerfile: Dockerfile
+    container_name: spark-worker3
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=2g
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    env_file:
+      - ./spark/spark.env
+    volumes: 
+      - ./spark/scripts:/opt/bitnami/spark/jobs
+      - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
+      - ./jenkins/logs:/opt/bitnami/spark/logs 
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    networks:
+      - shared_network
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins/data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - shared_network
+
 volumes:
   hadoop_namenode: {}
   hadoop_datanode1: {}
   hadoop_datanode2: {}
+  hive-metastore-db: {}
   nifi_conf: {}
   nifi_database_repository: {}
   nifi_flowfile_repository: {}

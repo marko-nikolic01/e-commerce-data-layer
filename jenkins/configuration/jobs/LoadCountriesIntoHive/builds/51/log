@@ -1,0 +1,26 @@
+Started by user [8mha:////4NhrNatbXaQKljqXcoS9ngQQ7onYqNIevFDbkW/rMbA0AAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/ecommerce
+[SSH] script:
+
+echo "Starting Spark job..." | tee -a spark_job.log
+
+/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/load_countries_into_hive.py >> spark_job.log 2>&1
+
+if [ $? -ne 0 ]; then
+  echo "Spark job FAILED!" | tee -a spark_job.log
+  exit 1
+else
+  echo "Spark job completed successfully." | tee -a spark_job.log
+fi
+
+
+[SSH] executing...
+Starting Spark job...
+Spark job FAILED!
+
+[SSH] completed
+[SSH] exit-status: 1
+
+Build step 'Execute shell script on remote host using ssh' marked build as failure
+Finished: FAILURE

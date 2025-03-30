@@ -1,0 +1,29 @@
+Started by timer
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/ecommerce
+[SSH] script:
+
+
+echo "Starting Spark job..."
+
+/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/load_countries_into_hive.py
+
+
+if [ $? -ne 0 ]; then
+  echo "Spark job FAILED!"
+  exit 1
+else
+  echo "Spark job completed successfully."
+fi
+
+
+[SSH] executing...
+JAVA_HOME is not set
+Starting Spark job...
+Spark job FAILED!
+
+[SSH] completed
+[SSH] exit-status: 1
+
+Build step 'Execute shell script on remote host using ssh' marked build as failure
+Finished: FAILURE

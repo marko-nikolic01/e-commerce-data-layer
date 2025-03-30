@@ -1,0 +1,9 @@
+Started by timer
+Started by timer
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/ecommerce
+[ecommerce] $ /bin/bash /tmp/jenkins6260475368982193581.sh
+Starting Spark job...
+Spark job FAILED!
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

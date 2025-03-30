@@ -1,0 +1,300 @@
+Started by timer
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/LoadCountriesIntoHive
+[SSH] script:
+PATH="/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+JAVA_HOME="/opt/java/openjdk"
+HOME="/root"
+
+echo "Starting Spark job..." | tee -a spark_job.log
+
+LOG_FILE=/opt/bitnami/spark/logs/load_countries_into_hdfs.log
+
+export JAVA_HOME=/opt/bitnami/java
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$PATH:/opt/bitnami/python/bin
+export PYSPARK_PYTHON=/opt/bitnami/python/bin/python3
+export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+
+/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/load_countries_into_hive.py 2>&1 | tee -a "$LOG_FILE"
+
+exit_code=${PIPESTATUS[0]}
+
+if [ $exit_code -ne 0 ]; then
+  echo "Spark job FAILED!" | tee -a "$LOG_FILE"
+  exit 1
+else
+  echo "Spark job completed successfully." | tee -a "$LOG_FILE"
+fi
+
+
+[SSH] executing...
+Starting Spark job...
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/03/30 12:36:02 INFO SparkContext: Running Spark version 3.2.2
+25/03/30 12:36:02 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/03/30 12:36:02 INFO ResourceUtils: ==============================================================
+25/03/30 12:36:02 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/03/30 12:36:02 INFO ResourceUtils: ==============================================================
+25/03/30 12:36:02 INFO SparkContext: Submitted application: Load countries data into Hive
+25/03/30 12:36:02 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/03/30 12:36:02 INFO ResourceProfile: Limiting resource is cpu
+25/03/30 12:36:02 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/03/30 12:36:02 INFO SecurityManager: Changing view acls to: root
+25/03/30 12:36:02 INFO SecurityManager: Changing modify acls to: root
+25/03/30 12:36:02 INFO SecurityManager: Changing view acls groups to: 
+25/03/30 12:36:02 INFO SecurityManager: Changing modify acls groups to: 
+25/03/30 12:36:02 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/03/30 12:36:02 INFO Utils: Successfully started service 'sparkDriver' on port 39861.
+25/03/30 12:36:02 INFO SparkEnv: Registering MapOutputTracker
+25/03/30 12:36:02 INFO SparkEnv: Registering BlockManagerMaster
+25/03/30 12:36:02 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/03/30 12:36:02 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/03/30 12:36:02 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/03/30 12:36:02 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-21c89493-2b67-44b1-9a48-afb292a6dfe9
+25/03/30 12:36:02 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/03/30 12:36:02 INFO SparkEnv: Registering OutputCommitCoordinator
+25/03/30 12:36:03 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/03/30 12:36:03 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://a339e4692fd5:4040
+25/03/30 12:36:03 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/03/30 12:36:03 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.8:7077 after 24 ms (0 ms spent in bootstraps)
+25/03/30 12:36:03 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250330123603-0004
+25/03/30 12:36:03 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250330123603-0004/0 on worker-20250330123156-172.18.0.7-45199 (172.18.0.7:45199) with 4 core(s)
+25/03/30 12:36:03 INFO StandaloneSchedulerBackend: Granted executor ID app-20250330123603-0004/0 on hostPort 172.18.0.7:45199 with 4 core(s), 1024.0 MiB RAM
+25/03/30 12:36:03 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250330123603-0004/1 on worker-20250330123157-172.18.0.9-42421 (172.18.0.9:42421) with 4 core(s)
+25/03/30 12:36:03 INFO StandaloneSchedulerBackend: Granted executor ID app-20250330123603-0004/1 on hostPort 172.18.0.9:42421 with 4 core(s), 1024.0 MiB RAM
+25/03/30 12:36:03 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250330123603-0004/2 on worker-20250330123156-172.18.0.4-40883 (172.18.0.4:40883) with 4 core(s)
+25/03/30 12:36:03 INFO StandaloneSchedulerBackend: Granted executor ID app-20250330123603-0004/2 on hostPort 172.18.0.4:40883 with 4 core(s), 1024.0 MiB RAM
+25/03/30 12:36:03 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46651.
+25/03/30 12:36:03 INFO NettyBlockTransferService: Server created on a339e4692fd5:46651
+25/03/30 12:36:03 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/03/30 12:36:03 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, a339e4692fd5, 46651, None)
+25/03/30 12:36:03 INFO BlockManagerMasterEndpoint: Registering block manager a339e4692fd5:46651 with 366.3 MiB RAM, BlockManagerId(driver, a339e4692fd5, 46651, None)
+25/03/30 12:36:03 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, a339e4692fd5, 46651, None)
+25/03/30 12:36:03 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, a339e4692fd5, 46651, None)
+25/03/30 12:36:03 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250330123603-0004/1 is now RUNNING
+25/03/30 12:36:03 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250330123603-0004/0 is now RUNNING
+25/03/30 12:36:03 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250330123603-0004/2 is now RUNNING
+25/03/30 12:36:03 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/03/30 12:36:03 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/03/30 12:36:03 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/03/30 12:36:05 INFO InMemoryFileIndex: It took 78 ms to list leaf files for 1 paths.
+25/03/30 12:36:05 INFO InMemoryFileIndex: It took 10 ms to list leaf files for 4 paths.
+25/03/30 12:36:05 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.4:42736) with ID 2,  ResourceProfileId 0
+25/03/30 12:36:05 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.7:59880) with ID 0,  ResourceProfileId 0
+25/03/30 12:36:05 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.9:54388) with ID 1,  ResourceProfileId 0
+25/03/30 12:36:05 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.4:38991 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.4, 38991, None)
+25/03/30 12:36:05 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.7:40731 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.7, 40731, None)
+25/03/30 12:36:05 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.9:38627 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.9, 38627, None)
+25/03/30 12:36:07 INFO FileSourceStrategy: Pushed Filters: 
+25/03/30 12:36:07 INFO FileSourceStrategy: Post-Scan Filters: (length(trim(value#0, None)) > 0)
+25/03/30 12:36:07 INFO FileSourceStrategy: Output Data Schema: struct<value: string>
+25/03/30 12:36:07 INFO CodeGenerator: Code generated in 141.471047 ms
+25/03/30 12:36:07 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 345.4 KiB, free 366.0 MiB)
+25/03/30 12:36:07 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 32.6 KiB, free 365.9 MiB)
+25/03/30 12:36:07 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on a339e4692fd5:46651 (size: 32.6 KiB, free: 366.3 MiB)
+25/03/30 12:36:07 INFO SparkContext: Created broadcast 0 from csv at NativeMethodAccessorImpl.java:0
+25/03/30 12:36:07 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/30 12:36:07 INFO SparkContext: Starting job: csv at NativeMethodAccessorImpl.java:0
+25/03/30 12:36:07 INFO DAGScheduler: Got job 0 (csv at NativeMethodAccessorImpl.java:0) with 1 output partitions
+25/03/30 12:36:07 INFO DAGScheduler: Final stage: ResultStage 0 (csv at NativeMethodAccessorImpl.java:0)
+25/03/30 12:36:07 INFO DAGScheduler: Parents of final stage: List()
+25/03/30 12:36:07 INFO DAGScheduler: Missing parents: List()
+25/03/30 12:36:07 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[3] at csv at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/03/30 12:36:07 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 11.6 KiB, free 365.9 MiB)
+25/03/30 12:36:07 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 5.8 KiB, free 365.9 MiB)
+25/03/30 12:36:07 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on a339e4692fd5:46651 (size: 5.8 KiB, free: 366.3 MiB)
+25/03/30 12:36:07 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1478
+25/03/30 12:36:07 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[3] at csv at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+25/03/30 12:36:07 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+25/03/30 12:36:07 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.18.0.7, executor 0, partition 0, ANY, 4898 bytes) taskResourceAssignments Map()
+25/03/30 12:36:07 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.18.0.7:40731 (size: 5.8 KiB, free: 366.3 MiB)
+25/03/30 12:36:08 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.18.0.7:40731 (size: 32.6 KiB, free: 366.3 MiB)
+25/03/30 12:36:09 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1505 ms on 172.18.0.7 (executor 0) (1/1)
+25/03/30 12:36:09 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+25/03/30 12:36:09 INFO DAGScheduler: ResultStage 0 (csv at NativeMethodAccessorImpl.java:0) finished in 1.575 s
+25/03/30 12:36:09 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+25/03/30 12:36:09 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+25/03/30 12:36:09 INFO DAGScheduler: Job 0 finished: csv at NativeMethodAccessorImpl.java:0, took 1.609134 s
+25/03/30 12:36:09 INFO CodeGenerator: Code generated in 8.46959 ms
+25/03/30 12:36:09 INFO FileSourceStrategy: Pushed Filters: 
+25/03/30 12:36:09 INFO FileSourceStrategy: Post-Scan Filters: 
+25/03/30 12:36:09 INFO FileSourceStrategy: Output Data Schema: struct<value: string>
+25/03/30 12:36:09 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 345.4 KiB, free 365.6 MiB)
+25/03/30 12:36:09 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 32.6 KiB, free 365.5 MiB)
+25/03/30 12:36:09 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on a339e4692fd5:46651 (size: 32.6 KiB, free: 366.2 MiB)
+25/03/30 12:36:09 INFO SparkContext: Created broadcast 2 from csv at NativeMethodAccessorImpl.java:0
+25/03/30 12:36:09 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/30 12:36:09 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/03/30 12:36:09 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/03/30 12:36:09 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/03/30 12:36:09 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/03/30 12:36:09 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/03/30 12:36:09 INFO metastore: Opened a connection to metastore, current connections: 1
+25/03/30 12:36:09 INFO metastore: Connected to metastore.
+25/03/30 12:36:10 INFO SQLStdHiveAccessController: Created SQLStdHiveAccessController for session context : HiveAuthzSessionContext [sessionString=fe1a7f6d-b26f-4862-b9a0-38ef324873ce, clientType=HIVECLI]
+25/03/30 12:36:10 WARN SessionState: METASTORE_FILTER_HOOK will be ignored, since hive.security.authorization.manager is set to instance of HiveAuthorizerFactory.
+25/03/30 12:36:10 INFO metastore: Mestastore configuration hive.metastore.filter.hook changed from org.apache.hadoop.hive.metastore.DefaultMetaStoreFilterHookImpl to org.apache.hadoop.hive.ql.security.authorization.plugin.AuthorizationMetaStoreFilterHook
+25/03/30 12:36:10 INFO metastore: Closed a connection to metastore, current connections: 0
+25/03/30 12:36:10 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/03/30 12:36:10 INFO metastore: Opened a connection to metastore, current connections: 1
+25/03/30 12:36:10 INFO metastore: Connected to metastore.
+25/03/30 12:36:10 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/03/30 12:36:10 INFO metastore: Opened a connection to metastore, current connections: 2
+25/03/30 12:36:10 INFO metastore: Connected to metastore.
+25/03/30 12:36:10 INFO InMemoryFileIndex: It took 11 ms to list leaf files for 1 paths.
+25/03/30 12:36:10 INFO FileSourceStrategy: Pushed Filters: 
+25/03/30 12:36:10 INFO FileSourceStrategy: Post-Scan Filters: 
+25/03/30 12:36:10 INFO FileSourceStrategy: Output Data Schema: struct<CountryID: string, CountryName: string>
+25/03/30 12:36:10 INFO FileSourceStrategy: Pushed Filters: IsNotNull(CountryID),IsNotNull(CountryName)
+25/03/30 12:36:10 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(CountryID#24),isnotnull(CountryName#25)
+25/03/30 12:36:10 INFO FileSourceStrategy: Output Data Schema: struct<CountryID: int, CountryName: string>
+25/03/30 12:36:10 INFO ParquetFileFormat: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+25/03/30 12:36:10 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+25/03/30 12:36:10 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+25/03/30 12:36:10 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+25/03/30 12:36:10 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+25/03/30 12:36:10 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+25/03/30 12:36:10 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+25/03/30 12:36:10 INFO BlockManagerInfo: Removed broadcast_1_piece0 on a339e4692fd5:46651 in memory (size: 5.8 KiB, free: 366.2 MiB)
+25/03/30 12:36:10 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 172.18.0.7:40731 in memory (size: 5.8 KiB, free: 366.3 MiB)
+25/03/30 12:36:10 INFO CodeGenerator: Code generated in 19.272243 ms
+25/03/30 12:36:10 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 349.9 KiB, free 365.2 MiB)
+25/03/30 12:36:10 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 33.5 KiB, free 365.2 MiB)
+25/03/30 12:36:10 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on a339e4692fd5:46651 (size: 33.5 KiB, free: 366.2 MiB)
+25/03/30 12:36:10 INFO SparkContext: Created broadcast 3 from $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/03/30 12:36:10 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4894006 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/30 12:36:10 INFO SparkContext: Starting job: $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/03/30 12:36:10 INFO DAGScheduler: Got job 1 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) with 7 output partitions
+25/03/30 12:36:10 INFO DAGScheduler: Final stage: ResultStage 1 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266)
+25/03/30 12:36:10 INFO DAGScheduler: Parents of final stage: List()
+25/03/30 12:36:10 INFO DAGScheduler: Missing parents: List()
+25/03/30 12:36:10 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[13] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266), which has no missing parents
+25/03/30 12:36:10 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 13.5 KiB, free 365.2 MiB)
+25/03/30 12:36:10 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 6.0 KiB, free 365.2 MiB)
+25/03/30 12:36:10 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on a339e4692fd5:46651 (size: 6.0 KiB, free: 366.2 MiB)
+25/03/30 12:36:10 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1478
+25/03/30 12:36:10 INFO DAGScheduler: Submitting 7 missing tasks from ResultStage 1 (MapPartitionsRDD[13] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6))
+25/03/30 12:36:10 INFO TaskSchedulerImpl: Adding task set 1.0 with 7 tasks resource profile 0
+25/03/30 12:36:10 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (172.18.0.4, executor 2, partition 0, ANY, 5095 bytes) taskResourceAssignments Map()
+25/03/30 12:36:10 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 2) (172.18.0.9, executor 1, partition 1, ANY, 5095 bytes) taskResourceAssignments Map()
+25/03/30 12:36:10 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 3) (172.18.0.7, executor 0, partition 2, ANY, 5095 bytes) taskResourceAssignments Map()
+25/03/30 12:36:10 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 4) (172.18.0.4, executor 2, partition 3, ANY, 5095 bytes) taskResourceAssignments Map()
+25/03/30 12:36:10 INFO TaskSetManager: Starting task 4.0 in stage 1.0 (TID 5) (172.18.0.9, executor 1, partition 4, ANY, 5095 bytes) taskResourceAssignments Map()
+25/03/30 12:36:10 INFO TaskSetManager: Starting task 5.0 in stage 1.0 (TID 6) (172.18.0.7, executor 0, partition 5, ANY, 5095 bytes) taskResourceAssignments Map()
+25/03/30 12:36:10 INFO TaskSetManager: Starting task 6.0 in stage 1.0 (TID 7) (172.18.0.4, executor 2, partition 6, ANY, 5095 bytes) taskResourceAssignments Map()
+25/03/30 12:36:10 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.18.0.7:40731 (size: 6.0 KiB, free: 366.3 MiB)
+25/03/30 12:36:10 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.18.0.7:40731 (size: 33.5 KiB, free: 366.2 MiB)
+25/03/30 12:36:10 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.18.0.9:38627 (size: 6.0 KiB, free: 366.3 MiB)
+25/03/30 12:36:10 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.18.0.4:38991 (size: 6.0 KiB, free: 366.3 MiB)
+25/03/30 12:36:11 INFO TaskSetManager: Finished task 5.0 in stage 1.0 (TID 6) in 709 ms on 172.18.0.7 (executor 0) (1/7)
+25/03/30 12:36:11 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 3) in 728 ms on 172.18.0.7 (executor 0) (2/7)
+25/03/30 12:36:11 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.18.0.4:38991 (size: 33.5 KiB, free: 366.3 MiB)
+25/03/30 12:36:11 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.18.0.9:38627 (size: 33.5 KiB, free: 366.3 MiB)
+25/03/30 12:36:12 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 4) in 2203 ms on 172.18.0.4 (executor 2) (3/7)
+25/03/30 12:36:12 INFO TaskSetManager: Finished task 6.0 in stage 1.0 (TID 7) in 2203 ms on 172.18.0.4 (executor 2) (4/7)
+25/03/30 12:36:12 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 5) in 2251 ms on 172.18.0.9 (executor 1) (5/7)
+25/03/30 12:36:12 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 2) in 2252 ms on 172.18.0.9 (executor 1) (6/7)
+25/03/30 12:36:13 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 2416 ms on 172.18.0.4 (executor 2) (7/7)
+25/03/30 12:36:13 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+25/03/30 12:36:13 INFO DAGScheduler: ResultStage 1 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) finished in 2.422 s
+25/03/30 12:36:13 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+25/03/30 12:36:13 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+25/03/30 12:36:13 INFO DAGScheduler: Job 1 finished: $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266, took 2.426403 s
+25/03/30 12:36:13 INFO CodeGenerator: Code generated in 8.140087 ms
+25/03/30 12:36:13 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 1028.0 KiB, free 364.2 MiB)
+25/03/30 12:36:13 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 3.5 KiB, free 364.2 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on a339e4692fd5:46651 (size: 3.5 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO SparkContext: Created broadcast 5 from $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/03/30 12:36:13 INFO FileSourceStrategy: Pushed Filters: 
+25/03/30 12:36:13 INFO FileSourceStrategy: Post-Scan Filters: 
+25/03/30 12:36:13 INFO FileSourceStrategy: Output Data Schema: struct<CountryID: string, CountryName: string>
+25/03/30 12:36:13 INFO HashAggregateExec: spark.sql.codegen.aggregate.map.twolevel.enabled is set to true, but current version of codegened fast hashmap does not support this aggregate.
+25/03/30 12:36:13 INFO CodeGenerator: Code generated in 24.033838 ms
+25/03/30 12:36:13 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 345.3 KiB, free 363.8 MiB)
+25/03/30 12:36:13 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 32.6 KiB, free 363.8 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on a339e4692fd5:46651 (size: 32.6 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO SparkContext: Created broadcast 6 from insertInto at NativeMethodAccessorImpl.java:0
+25/03/30 12:36:13 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/30 12:36:13 INFO DAGScheduler: Registering RDD 17 (insertInto at NativeMethodAccessorImpl.java:0) as input to shuffle 0
+25/03/30 12:36:13 INFO DAGScheduler: Got map stage job 2 (insertInto at NativeMethodAccessorImpl.java:0) with 4 output partitions
+25/03/30 12:36:13 INFO DAGScheduler: Final stage: ShuffleMapStage 2 (insertInto at NativeMethodAccessorImpl.java:0)
+25/03/30 12:36:13 INFO DAGScheduler: Parents of final stage: List()
+25/03/30 12:36:13 INFO DAGScheduler: Missing parents: List()
+25/03/30 12:36:13 INFO DAGScheduler: Submitting ShuffleMapStage 2 (MapPartitionsRDD[17] at insertInto at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/03/30 12:36:13 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 39.3 KiB, free 363.8 MiB)
+25/03/30 12:36:13 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 18.7 KiB, free 363.7 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on a339e4692fd5:46651 (size: 18.7 KiB, free: 366.1 MiB)
+25/03/30 12:36:13 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1478
+25/03/30 12:36:13 INFO DAGScheduler: Submitting 4 missing tasks from ShuffleMapStage 2 (MapPartitionsRDD[17] at insertInto at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1, 2, 3))
+25/03/30 12:36:13 INFO TaskSchedulerImpl: Adding task set 2.0 with 4 tasks resource profile 0
+25/03/30 12:36:13 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 8) (172.18.0.4, executor 2, partition 0, ANY, 4887 bytes) taskResourceAssignments Map()
+25/03/30 12:36:13 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 9) (172.18.0.9, executor 1, partition 1, ANY, 4887 bytes) taskResourceAssignments Map()
+25/03/30 12:36:13 INFO TaskSetManager: Starting task 2.0 in stage 2.0 (TID 10) (172.18.0.7, executor 0, partition 2, ANY, 4887 bytes) taskResourceAssignments Map()
+25/03/30 12:36:13 INFO TaskSetManager: Starting task 3.0 in stage 2.0 (TID 11) (172.18.0.4, executor 2, partition 3, ANY, 4887 bytes) taskResourceAssignments Map()
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 172.18.0.7:40731 (size: 18.7 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 172.18.0.4:38991 (size: 18.7 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 172.18.0.9:38627 (size: 18.7 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.18.0.7:40731 (size: 3.5 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.18.0.9:38627 (size: 3.5 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.18.0.4:38991 (size: 3.5 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 172.18.0.7:40731 (size: 32.6 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 172.18.0.9:38627 (size: 32.6 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO TaskSetManager: Finished task 2.0 in stage 2.0 (TID 10) in 517 ms on 172.18.0.7 (executor 0) (1/4)
+25/03/30 12:36:13 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 172.18.0.4:38991 (size: 32.6 KiB, free: 366.2 MiB)
+25/03/30 12:36:13 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 9) in 603 ms on 172.18.0.9 (executor 1) (2/4)
+25/03/30 12:36:13 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 8) in 630 ms on 172.18.0.4 (executor 2) (3/4)
+25/03/30 12:36:13 INFO TaskSetManager: Finished task 3.0 in stage 2.0 (TID 11) in 630 ms on 172.18.0.4 (executor 2) (4/4)
+25/03/30 12:36:13 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+25/03/30 12:36:13 INFO DAGScheduler: ShuffleMapStage 2 (insertInto at NativeMethodAccessorImpl.java:0) finished in 0.644 s
+25/03/30 12:36:13 INFO DAGScheduler: looking for newly runnable stages
+25/03/30 12:36:13 INFO DAGScheduler: running: Set()
+25/03/30 12:36:13 INFO DAGScheduler: waiting: Set()
+25/03/30 12:36:13 INFO DAGScheduler: failed: Set()
+25/03/30 12:36:13 INFO ShufflePartitionsUtil: For shuffle(0), advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+25/03/30 12:36:13 INFO HashAggregateExec: spark.sql.codegen.aggregate.map.twolevel.enabled is set to true, but current version of codegened fast hashmap does not support this aggregate.
+25/03/30 12:36:13 INFO CodeGenerator: Code generated in 14.612893 ms
+25/03/30 12:36:14 INFO SparkContext: Starting job: insertInto at NativeMethodAccessorImpl.java:0
+25/03/30 12:36:14 INFO DAGScheduler: Got job 3 (insertInto at NativeMethodAccessorImpl.java:0) with 1 output partitions
+25/03/30 12:36:14 INFO DAGScheduler: Final stage: ResultStage 4 (insertInto at NativeMethodAccessorImpl.java:0)
+25/03/30 12:36:14 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 3)
+25/03/30 12:36:14 INFO DAGScheduler: Missing parents: List()
+25/03/30 12:36:14 INFO DAGScheduler: Submitting ResultStage 4 (MapPartitionsRDD[19] at insertInto at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/03/30 12:36:14 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 235.3 KiB, free 363.5 MiB)
+25/03/30 12:36:14 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 87.4 KiB, free 363.4 MiB)
+25/03/30 12:36:14 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on a339e4692fd5:46651 (size: 87.4 KiB, free: 366.1 MiB)
+25/03/30 12:36:14 INFO SparkContext: Created broadcast 8 from broadcast at DAGScheduler.scala:1478
+25/03/30 12:36:14 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 4 (MapPartitionsRDD[19] at insertInto at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+25/03/30 12:36:14 INFO TaskSchedulerImpl: Adding task set 4.0 with 1 tasks resource profile 0
+25/03/30 12:36:14 INFO TaskSetManager: Starting task 0.0 in stage 4.0 (TID 12) (172.18.0.9, executor 1, partition 0, PROCESS_LOCAL, 4457 bytes) taskResourceAssignments Map()
+25/03/30 12:36:14 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on 172.18.0.9:38627 (size: 87.4 KiB, free: 366.1 MiB)
+25/03/30 12:36:14 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 172.18.0.9:54388
+25/03/30 12:36:14 INFO TaskSetManager: Finished task 0.0 in stage 4.0 (TID 12) in 473 ms on 172.18.0.9 (executor 1) (1/1)
+25/03/30 12:36:14 INFO TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool 
+25/03/30 12:36:14 INFO DAGScheduler: ResultStage 4 (insertInto at NativeMethodAccessorImpl.java:0) finished in 0.489 s
+25/03/30 12:36:14 INFO DAGScheduler: Job 3 is finished. Cancelling potential speculative or zombie tasks for this job
+25/03/30 12:36:14 INFO TaskSchedulerImpl: Killing all running tasks in stage 4: Stage finished
+25/03/30 12:36:14 INFO DAGScheduler: Job 3 finished: insertInto at NativeMethodAccessorImpl.java:0, took 0.498624 s
+25/03/30 12:36:14 INFO FileFormatWriter: Start to commit write Job 4da9f009-64e4-459a-a766-acc92d82f975.
+25/03/30 12:36:14 INFO FileFormatWriter: Write Job 4da9f009-64e4-459a-a766-acc92d82f975 committed. Elapsed time: 43 ms.
+25/03/30 12:36:14 INFO FileFormatWriter: Finished processing stats for write job 4da9f009-64e4-459a-a766-acc92d82f975.
+25/03/30 12:36:14 INFO InMemoryFileIndex: It took 8 ms to list leaf files for 1 paths.
+25/03/30 12:36:14 INFO SparkUI: Stopped Spark web UI at http://a339e4692fd5:4040
+25/03/30 12:36:14 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/03/30 12:36:14 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/03/30 12:36:14 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/03/30 12:36:14 INFO MemoryStore: MemoryStore cleared
+25/03/30 12:36:14 INFO BlockManager: BlockManager stopped
+25/03/30 12:36:14 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/03/30 12:36:14 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/03/30 12:36:14 INFO SparkContext: Successfully stopped SparkContext
+25/03/30 12:36:14 INFO ShutdownHookManager: Shutdown hook called
+25/03/30 12:36:14 INFO ShutdownHookManager: Deleting directory /tmp/spark-9a164d74-dcf0-41ec-959c-01739f9d86fa
+25/03/30 12:36:14 INFO ShutdownHookManager: Deleting directory /tmp/spark-ff5d1b01-98c7-4194-a9d2-1b0c0debb687
+25/03/30 12:36:14 INFO ShutdownHookManager: Deleting directory /tmp/spark-ff5d1b01-98c7-4194-a9d2-1b0c0debb687/pyspark-2f788b23-0e64-46cd-90cd-1c2854a69db0
+Spark job completed successfully.
+
+[SSH] completed
+[SSH] exit-status: 0
+
+Finished: SUCCESS
