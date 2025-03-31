@@ -20,7 +20,7 @@
       <siteName>root@spark-master:22</siteName>
       <command>echo &quot;Starting Spark job...&quot; | tee -a spark_job.log
 
-LOG_FILE=/opt/bitnami/spark/logs/load_countries_into_hdfs.log
+LOG_FILE=/opt/bitnami/spark/logs/load_products_into_hdfs.log
 
 export JAVA_HOME=/opt/bitnami/java
 export PATH=$JAVA_HOME/bin:$PATH
@@ -28,7 +28,7 @@ export PATH=$PATH:/opt/bitnami/python/bin
 export PYSPARK_PYTHON=/opt/bitnami/python/bin/python3
 export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
 
-/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/load_countries_into_hive.py 2&gt;&amp;1 | tee -a &quot;$LOG_FILE&quot;
+/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/load_products_into_hive.py 2&gt;&amp;1 | tee -a &quot;$LOG_FILE&quot;
 
 exit_code=${PIPESTATUS[0]}
 

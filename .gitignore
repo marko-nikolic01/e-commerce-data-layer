@@ -1,6 +1,7 @@
 /data/
 /data_generator/data/
-/logs
+/logs/
+/logs/*
 
 /jenkins/configuration/*
 

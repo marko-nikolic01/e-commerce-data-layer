@@ -42,8 +42,9 @@ if spark._jsparkSession.catalog().tableExists(HIVE_TABLE):
         how="left_anti"
     )
 
-# Insert only new rows
-df.write.mode("append").insertInto(HIVE_TABLE)
+# Insert new rows
+if df.count() > 0:
+    df.write.mode("append").insertInto(HIVE_TABLE)
 
 # Stop Spark Session
 spark.stop()
