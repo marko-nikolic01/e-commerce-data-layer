@@ -1,2 +1,9 @@
-data/
-data_generator/data
+/data/
+/data_generator/data/
+/logs/
+/logs/*
+
+/jenkins/configuration/*
+
+!/jenkins/configuration/jobs/
+!/jenkins/configuration/jobs/**

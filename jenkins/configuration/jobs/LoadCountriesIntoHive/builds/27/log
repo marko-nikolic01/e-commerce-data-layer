@@ -1,0 +1,30 @@
+Started by timer
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/ecommerce
+[ecommerce] $ /bin/bash /tmp/jenkins14661548916963872863.sh
+Starting Spark job...
+Spark job FAILED!
+Build step 'Execute shell' marked build as failure
+Sending e-mails to: nikolicmarko1243@gmail.com
+ERROR: Got bad greeting from SMTP host: smtp.gmail.com, port: 465, response: [EOF]
+jakarta.mail.MessagingException: Got bad greeting from SMTP host: smtp.gmail.com, port: 465, response: [EOF]
+	at PluginClassLoader for jakarta-mail-api//org.eclipse.angus.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:2231)
+	at PluginClassLoader for jakarta-mail-api//org.eclipse.angus.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:729)
+	at PluginClassLoader for jakarta-mail-api//jakarta.mail.Service.connect(Service.java:367)
+	at PluginClassLoader for jakarta-mail-api//jakarta.mail.Service.connect(Service.java:225)
+	at PluginClassLoader for jakarta-mail-api//jakarta.mail.Service.connect(Service.java:174)
+	at PluginClassLoader for jakarta-mail-api//jakarta.mail.Transport.send0(Transport.java:232)
+	at PluginClassLoader for jakarta-mail-api//jakarta.mail.Transport.send(Transport.java:102)
+	at PluginClassLoader for mailer//hudson.tasks.MailSender.run(MailSender.java:131)
+	at PluginClassLoader for mailer//hudson.tasks.Mailer.perform(Mailer.java:176)
+	at PluginClassLoader for mailer//hudson.tasks.Mailer.perform(Mailer.java:139)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:818)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.performAllBuildSteps(AbstractBuild.java:767)
+	at hudson.model.Build$BuildExecution.post2(Build.java:179)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.post(AbstractBuild.java:711)
+	at hudson.model.Run.execute(Run.java:1856)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:44)
+	at hudson.model.ResourceController.execute(ResourceController.java:101)
+	at hudson.model.Executor.run(Executor.java:446)
+Finished: FAILURE
