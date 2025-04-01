@@ -23,10 +23,7 @@ df = spark.read.option("header", True) \
     .option("escape", "\"") \
     .csv(file_path)
 
-# Check the schema to verify the column types
-df.printSchema()
-
-# Cast columns, ensuring proper casting of UnitPrice to DECIMAL(10,5)
+# Cast columns adn drop duplicates
 df = df.select(
     col("StockCode").cast("string").alias("stockcode"),
     col("ProductName").cast("string").alias("productname"),
@@ -34,9 +31,6 @@ df = df.select(
     col("UnitPrice").cast("decimal(10,5)").alias("unitprice"),
     col("Date").cast("string").alias("date")
 ).dropDuplicates(["stockcode", "date"])
-
-# Check the schema after casting to verify types
-df.printSchema()
 
 # Create Hive table if not exists
 spark.sql(f"""
@@ -49,27 +43,6 @@ spark.sql(f"""
     PARTITIONED BY (Date STRING)
     STORED AS PARQUET
 """)
-
-# Load existing Hive data
-if spark._jsparkSession.catalog().tableExists(HIVE_TABLE):
-    existing_df = spark.table(HIVE_TABLE)
-
-    existing_df = existing_df.select(
-        col("StockCode").cast("string").alias("stockcode"),
-        col("ProductName").cast("string").alias("productname"),
-        col("ProductDescription").cast("string").alias("productdescription"),
-        col("UnitPrice").cast("decimal(10,5)").alias("unitprice"),
-        col("Date").cast("string").alias("date")
-    ).dropDuplicates(["stockcode", "date"])
-    
-    # Filter out duplicates
-    df = df.join(
-        existing_df,
-        on=["stockcode", "date"],
-        how="left_anti"
-    )
-
-
 
 # Insert new rows
 if df.count() > 0:

@@ -18,31 +18,32 @@ df = spark.read.option("header", True).csv(COUNTRIES_CSV_PATH)
 
 # Cast columns and drop duplicates
 df = df.select(
-    col("CountryID").cast("int"),
-    col("CountryName").cast("string")
-).dropDuplicates(["CountryID", "CountryName"])
+    col("CountryID").cast("int").alias("countryid"),
+    col("CountryName").cast("string").alias("countryname")
+).dropDuplicates(["countryid", "countryname"])
 
 # Create Hive table if not exists
 spark.sql(f"""
     CREATE TABLE IF NOT EXISTS {HIVE_TABLE} (
-        CountryID INT,
-        CountryName STRING
+        countryid INT,
+        countryname STRING
     )
     STORED AS PARQUET
 """)
 
-# Load existing Hive table into memory (if any)
+# Load existing Hive data
 if spark._jsparkSession.catalog().tableExists(HIVE_TABLE):
     existing_df = spark.table(HIVE_TABLE)
     
-    # Filter out existing entries to avoid duplicates
+    # Filter out duplicates
     df = df.join(
         existing_df,
-        on=["CountryID", "CountryName"],
+        on=["countryid", "countryname"],
         how="left_anti"
     )
 
 # Insert new rows
+df = df.filter(col("countryid").isNotNull())
 if df.count() > 0:
     df.write.mode("append").insertInto(HIVE_TABLE)
 
