@@ -140,6 +140,8 @@ services:
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
       - ./jenkins/logs:/opt/bitnami/spark/logs 
+    depends_on:
+      - postgres
     networks:
       - shared_network
 
@@ -216,6 +218,21 @@ services:
     networks:
       - shared_network
 
+  postgres:
+    image: postgres:14.0
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ecommerce
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - shared_network
+    restart: always
+
 volumes:
   hadoop_namenode: {}
   hadoop_datanode1: {}
@@ -228,6 +245,7 @@ volumes:
   nifi_provenance_repository: {}
   nifi_state: {}
   nifi_registry: {}
+  postgres_data: {}
 
 networks:
   shared_network:

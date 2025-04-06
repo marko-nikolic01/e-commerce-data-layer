@@ -1,0 +1,760 @@
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:29:38 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:29:39 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:29:39 INFO ResourceUtils: ==============================================================
+25/04/06 13:29:39 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:29:39 INFO ResourceUtils: ==============================================================
+25/04/06 13:29:39 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:29:39 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:29:39 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:29:39 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:29:39 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:29:39 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:29:39 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:29:39 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:29:39 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:29:39 INFO Utils: Successfully started service 'sparkDriver' on port 42691.
+25/04/06 13:29:39 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:29:39 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:29:39 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:29:39 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:29:39 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:29:39 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-e7434191-e11f-4ebf-bea5-02afbc21388b
+25/04/06 13:29:39 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:29:39 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:29:39 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:29:39 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:29:39 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:29:39 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 23 ms (0 ms spent in bootstraps)
+25/04/06 13:29:39 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406132939-0039
+25/04/06 13:29:39 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406132939-0039/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:29:39 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406132939-0039/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:29:39 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406132939-0039/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:29:39 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406132939-0039/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:29:39 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406132939-0039/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:29:39 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406132939-0039/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:29:39 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36215.
+25/04/06 13:29:39 INFO NettyBlockTransferService: Server created on f2a344a33cdc:36215
+25/04/06 13:29:39 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:29:39 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 36215, None)
+25/04/06 13:29:39 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:36215 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 36215, None)
+25/04/06 13:29:39 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406132939-0039/0 is now RUNNING
+25/04/06 13:29:39 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 36215, None)
+25/04/06 13:29:39 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406132939-0039/1 is now RUNNING
+25/04/06 13:29:39 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 36215, None)
+25/04/06 13:29:39 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406132939-0039/2 is now RUNNING
+25/04/06 13:29:40 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:29:40 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:29:40 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:29:41 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:29:41 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:29:41 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:29:41 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:29:42 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:29:42 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:55440) with ID 0,  ResourceProfileId 0
+25/04/06 13:29:42 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:29:42 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:36774) with ID 1,  ResourceProfileId 0
+25/04/06 13:29:42 INFO metastore: Connected to metastore.
+25/04/06 13:29:42 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:55722) with ID 2,  ResourceProfileId 0
+25/04/06 13:29:42 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:34015 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 34015, None)
+25/04/06 13:29:42 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:38765 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 38765, None)
+25/04/06 13:29:42 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:36307 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 36307, None)
+25/04/06 13:29:44 INFO InMemoryFileIndex: It took 56 ms to list leaf files for 1 paths.
+25/04/06 13:29:44 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:29:44 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:29:44 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:29:44 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:29:44 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:29:44 INFO BlockManager: BlockManager stopped
+25/04/06 13:29:44 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:29:44 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:29:44 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:29:44 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:29:44 INFO ShutdownHookManager: Deleting directory /tmp/spark-dc285778-bc7a-4004-af93-5597874480e1
+25/04/06 13:29:44 INFO ShutdownHookManager: Deleting directory /tmp/spark-dc285778-bc7a-4004-af93-5597874480e1/pyspark-a4acf71e-ff54-488c-903a-d4d7ede4878e
+25/04/06 13:29:44 INFO ShutdownHookManager: Deleting directory /tmp/spark-ee4bdbe0-9ddc-41b8-b0ef-9a9f00cdc596
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:33:24 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:33:24 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:33:24 INFO ResourceUtils: ==============================================================
+25/04/06 13:33:24 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:33:24 INFO ResourceUtils: ==============================================================
+25/04/06 13:33:24 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:33:24 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:33:24 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:33:24 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:33:24 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:33:24 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:33:24 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:33:24 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:33:24 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:33:24 INFO Utils: Successfully started service 'sparkDriver' on port 35837.
+25/04/06 13:33:24 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:33:24 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:33:24 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:33:24 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:33:24 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:33:24 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-8bffaff2-4093-4200-84fb-b14610025e46
+25/04/06 13:33:24 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:33:24 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:33:24 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:33:24 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:33:25 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:33:25 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 22 ms (0 ms spent in bootstraps)
+25/04/06 13:33:25 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406133325-0043
+25/04/06 13:33:25 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406133325-0043/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:33:25 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406133325-0043/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:33:25 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406133325-0043/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:33:25 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406133325-0043/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:33:25 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406133325-0043/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:33:25 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406133325-0043/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:33:25 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 32945.
+25/04/06 13:33:25 INFO NettyBlockTransferService: Server created on f2a344a33cdc:32945
+25/04/06 13:33:25 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:33:25 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 32945, None)
+25/04/06 13:33:25 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:32945 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 32945, None)
+25/04/06 13:33:25 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406133325-0043/0 is now RUNNING
+25/04/06 13:33:25 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 32945, None)
+25/04/06 13:33:25 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406133325-0043/1 is now RUNNING
+25/04/06 13:33:25 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 32945, None)
+25/04/06 13:33:25 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406133325-0043/2 is now RUNNING
+25/04/06 13:33:25 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:33:25 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:33:25 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:33:26 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:33:26 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:33:26 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:33:26 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:33:27 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:33:27 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:33:27 INFO metastore: Connected to metastore.
+25/04/06 13:33:27 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:50888) with ID 2,  ResourceProfileId 0
+25/04/06 13:33:27 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:59964) with ID 1,  ResourceProfileId 0
+25/04/06 13:33:27 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:58794) with ID 0,  ResourceProfileId 0
+25/04/06 13:33:27 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:37127 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 37127, None)
+25/04/06 13:33:27 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:33685 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 33685, None)
+25/04/06 13:33:27 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:43915 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 43915, None)
+25/04/06 13:33:28 INFO InMemoryFileIndex: It took 25 ms to list leaf files for 1 paths.
+25/04/06 13:33:28 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:33:28 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:33:28 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:33:28 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:33:28 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:33:28 INFO BlockManager: BlockManager stopped
+25/04/06 13:33:28 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:33:28 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:33:28 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:33:29 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:33:29 INFO ShutdownHookManager: Deleting directory /tmp/spark-1be457ef-ad29-4cb3-bbea-364ea69f508e/pyspark-b662322a-9fb3-4fab-9512-c40f22195f7c
+25/04/06 13:33:29 INFO ShutdownHookManager: Deleting directory /tmp/spark-1be457ef-ad29-4cb3-bbea-364ea69f508e
+25/04/06 13:33:29 INFO ShutdownHookManager: Deleting directory /tmp/spark-14c65737-39f6-4039-8c70-578d1cfb3176
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:40:46 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:40:46 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:40:46 INFO ResourceUtils: ==============================================================
+25/04/06 13:40:46 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:40:46 INFO ResourceUtils: ==============================================================
+25/04/06 13:40:46 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:40:46 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:40:46 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:40:46 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:40:46 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:40:46 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:40:46 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:40:46 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:40:46 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:40:47 INFO Utils: Successfully started service 'sparkDriver' on port 35239.
+25/04/06 13:40:47 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:40:47 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:40:47 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:40:47 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:40:47 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:40:47 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-df3fc33e-939d-45aa-8007-12faf9a6a9be
+25/04/06 13:40:47 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:40:47 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:40:47 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:40:47 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:40:47 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:40:47 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 24 ms (0 ms spent in bootstraps)
+25/04/06 13:40:47 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406134047-0046
+25/04/06 13:40:47 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134047-0046/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:40:47 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134047-0046/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:40:47 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134047-0046/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:40:47 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134047-0046/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:40:47 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134047-0046/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:40:47 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134047-0046/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:40:47 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46731.
+25/04/06 13:40:47 INFO NettyBlockTransferService: Server created on f2a344a33cdc:46731
+25/04/06 13:40:47 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:40:47 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 46731, None)
+25/04/06 13:40:47 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:46731 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 46731, None)
+25/04/06 13:40:47 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134047-0046/0 is now RUNNING
+25/04/06 13:40:47 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134047-0046/1 is now RUNNING
+25/04/06 13:40:47 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134047-0046/2 is now RUNNING
+25/04/06 13:40:47 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 46731, None)
+25/04/06 13:40:47 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 46731, None)
+25/04/06 13:40:47 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:40:47 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:40:48 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:40:49 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:40:49 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:40:49 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:40:49 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:40:49 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:40:49 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:40:49 INFO metastore: Connected to metastore.
+25/04/06 13:40:49 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:60644) with ID 2,  ResourceProfileId 0
+25/04/06 13:40:49 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:36186) with ID 0,  ResourceProfileId 0
+25/04/06 13:40:49 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:51864) with ID 1,  ResourceProfileId 0
+25/04/06 13:40:49 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:34297 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 34297, None)
+25/04/06 13:40:49 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:44719 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 44719, None)
+25/04/06 13:40:49 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:33535 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 33535, None)
+25/04/06 13:40:51 INFO InMemoryFileIndex: It took 24 ms to list leaf files for 1 paths.
+25/04/06 13:40:51 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:40:51 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:40:51 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:40:51 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:40:51 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:40:51 INFO BlockManager: BlockManager stopped
+25/04/06 13:40:51 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:40:51 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:40:51 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:40:51 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:40:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-abc120af-1250-49d0-9e43-76756da1bed7
+25/04/06 13:40:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-720aa218-59b0-4a99-9902-fac4d004ac80/pyspark-6abda302-8c40-4d69-82dc-9fd970797ad4
+25/04/06 13:40:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-720aa218-59b0-4a99-9902-fac4d004ac80
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:44:05 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:44:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:44:05 INFO ResourceUtils: ==============================================================
+25/04/06 13:44:05 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:44:05 INFO ResourceUtils: ==============================================================
+25/04/06 13:44:05 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:44:05 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:44:05 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:44:05 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:44:05 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:44:05 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:44:05 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:44:05 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:44:05 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:44:05 INFO Utils: Successfully started service 'sparkDriver' on port 37689.
+25/04/06 13:44:05 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:44:05 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:44:05 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:44:05 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:44:05 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:44:05 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-e5ad039b-edf4-4153-bfde-62b91f73e2c6
+25/04/06 13:44:05 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:44:05 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:44:06 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:44:06 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:44:06 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:44:06 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 21 ms (0 ms spent in bootstraps)
+25/04/06 13:44:06 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406134406-0050
+25/04/06 13:44:06 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134406-0050/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:44:06 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134406-0050/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:44:06 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134406-0050/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:44:06 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134406-0050/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:44:06 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134406-0050/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:44:06 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134406-0050/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:44:06 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33059.
+25/04/06 13:44:06 INFO NettyBlockTransferService: Server created on f2a344a33cdc:33059
+25/04/06 13:44:06 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:44:06 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 33059, None)
+25/04/06 13:44:06 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:33059 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 33059, None)
+25/04/06 13:44:06 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134406-0050/0 is now RUNNING
+25/04/06 13:44:06 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134406-0050/1 is now RUNNING
+25/04/06 13:44:06 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 33059, None)
+25/04/06 13:44:06 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134406-0050/2 is now RUNNING
+25/04/06 13:44:06 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 33059, None)
+25/04/06 13:44:06 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:44:06 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:44:06 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:44:07 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:44:07 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:44:07 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:44:07 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:44:08 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:44:08 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:44:08 INFO metastore: Connected to metastore.
+25/04/06 13:44:08 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:55252) with ID 0,  ResourceProfileId 0
+25/04/06 13:44:08 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:59228) with ID 1,  ResourceProfileId 0
+25/04/06 13:44:08 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:57320) with ID 2,  ResourceProfileId 0
+25/04/06 13:44:08 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:42651 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 42651, None)
+25/04/06 13:44:08 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:39423 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 39423, None)
+25/04/06 13:44:08 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:35353 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 35353, None)
+25/04/06 13:44:09 INFO InMemoryFileIndex: It took 24 ms to list leaf files for 1 paths.
+25/04/06 13:44:09 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:44:09 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:44:09 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:44:09 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:44:09 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:44:09 INFO BlockManager: BlockManager stopped
+25/04/06 13:44:09 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:44:09 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:44:09 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:44:10 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:44:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-273e3764-9941-4833-a57d-e1f8b6313d69
+25/04/06 13:44:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-273e3764-9941-4833-a57d-e1f8b6313d69/pyspark-fbf02358-1d70-488b-84b9-6be7e3dd01f1
+25/04/06 13:44:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-3dc92c0c-356f-47e0-b21d-c61df542a1ba
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:46:04 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:46:04 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:46:05 INFO ResourceUtils: ==============================================================
+25/04/06 13:46:05 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:46:05 INFO ResourceUtils: ==============================================================
+25/04/06 13:46:05 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:46:05 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:46:05 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:46:05 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:46:05 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:46:05 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:46:05 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:46:05 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:46:05 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:46:05 INFO Utils: Successfully started service 'sparkDriver' on port 46445.
+25/04/06 13:46:05 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:46:05 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:46:05 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:46:05 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:46:05 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:46:05 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-ce33cf25-7301-4334-9f54-805fc6402407
+25/04/06 13:46:05 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:46:05 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:46:05 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:46:05 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:46:05 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:46:05 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 22 ms (0 ms spent in bootstraps)
+25/04/06 13:46:05 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406134605-0054
+25/04/06 13:46:05 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134605-0054/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:46:05 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134605-0054/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:46:05 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134605-0054/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:46:05 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134605-0054/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:46:05 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134605-0054/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:46:05 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134605-0054/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:46:05 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 43715.
+25/04/06 13:46:05 INFO NettyBlockTransferService: Server created on f2a344a33cdc:43715
+25/04/06 13:46:05 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:46:05 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 43715, None)
+25/04/06 13:46:05 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:43715 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 43715, None)
+25/04/06 13:46:05 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134605-0054/0 is now RUNNING
+25/04/06 13:46:05 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134605-0054/1 is now RUNNING
+25/04/06 13:46:05 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 43715, None)
+25/04/06 13:46:05 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134605-0054/2 is now RUNNING
+25/04/06 13:46:05 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 43715, None)
+25/04/06 13:46:06 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:46:06 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:46:06 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:46:07 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:46:07 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:46:07 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:46:07 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:46:07 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:46:07 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:46:07 INFO metastore: Connected to metastore.
+25/04/06 13:46:07 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:56302) with ID 1,  ResourceProfileId 0
+25/04/06 13:46:07 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:34436) with ID 0,  ResourceProfileId 0
+25/04/06 13:46:07 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:43224) with ID 2,  ResourceProfileId 0
+25/04/06 13:46:07 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:45811 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 45811, None)
+25/04/06 13:46:07 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:37501 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 37501, None)
+25/04/06 13:46:07 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:44897 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 44897, None)
+25/04/06 13:46:09 INFO InMemoryFileIndex: It took 25 ms to list leaf files for 1 paths.
+25/04/06 13:46:09 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:46:09 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:46:09 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:46:09 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:46:09 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:46:09 INFO BlockManager: BlockManager stopped
+25/04/06 13:46:09 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:46:09 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:46:09 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:46:09 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:46:09 INFO ShutdownHookManager: Deleting directory /tmp/spark-af97f1db-b0d6-42f7-a473-0f227f8ad2ae
+25/04/06 13:46:09 INFO ShutdownHookManager: Deleting directory /tmp/spark-1aedff77-8f0a-40ac-acb3-689a8c0a96b1/pyspark-08334b1e-f2da-4291-ba3f-ef28c560d52e
+25/04/06 13:46:09 INFO ShutdownHookManager: Deleting directory /tmp/spark-1aedff77-8f0a-40ac-acb3-689a8c0a96b1
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:47:00 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:47:00 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:47:00 INFO ResourceUtils: ==============================================================
+25/04/06 13:47:00 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:47:00 INFO ResourceUtils: ==============================================================
+25/04/06 13:47:00 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:47:00 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:47:00 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:47:00 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:47:00 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:47:00 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:47:00 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:47:00 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:47:00 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:47:00 INFO Utils: Successfully started service 'sparkDriver' on port 43573.
+25/04/06 13:47:00 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:47:00 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:47:00 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:47:00 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:47:00 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:47:00 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-e4ad8974-150e-46df-89a9-943ebcfeb984
+25/04/06 13:47:00 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:47:00 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:47:00 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:47:00 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:47:00 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:47:00 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 21 ms (0 ms spent in bootstraps)
+25/04/06 13:47:01 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406134701-0057
+25/04/06 13:47:01 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134701-0057/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:47:01 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134701-0057/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:47:01 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134701-0057/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:47:01 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134701-0057/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:47:01 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134701-0057/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:47:01 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41619.
+25/04/06 13:47:01 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134701-0057/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:47:01 INFO NettyBlockTransferService: Server created on f2a344a33cdc:41619
+25/04/06 13:47:01 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:47:01 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 41619, None)
+25/04/06 13:47:01 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134701-0057/1 is now RUNNING
+25/04/06 13:47:01 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134701-0057/0 is now RUNNING
+25/04/06 13:47:01 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:41619 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 41619, None)
+25/04/06 13:47:01 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134701-0057/2 is now RUNNING
+25/04/06 13:47:01 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 41619, None)
+25/04/06 13:47:01 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 41619, None)
+25/04/06 13:47:01 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:47:01 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:47:01 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:47:02 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:47:02 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:47:02 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:47:02 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:47:02 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:47:02 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:47:02 INFO metastore: Connected to metastore.
+25/04/06 13:47:02 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:43986) with ID 0,  ResourceProfileId 0
+25/04/06 13:47:02 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:59468) with ID 1,  ResourceProfileId 0
+25/04/06 13:47:02 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:57972) with ID 2,  ResourceProfileId 0
+25/04/06 13:47:03 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:43335 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 43335, None)
+25/04/06 13:47:03 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:33365 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 33365, None)
+25/04/06 13:47:03 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:43333 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 43333, None)
+25/04/06 13:47:04 INFO InMemoryFileIndex: It took 53 ms to list leaf files for 1 paths.
+25/04/06 13:47:04 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:47:04 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:47:04 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:47:04 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:47:04 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:47:04 INFO BlockManager: BlockManager stopped
+25/04/06 13:47:04 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:47:04 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:47:04 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:47:05 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:47:05 INFO ShutdownHookManager: Deleting directory /tmp/spark-fa5a9748-4df7-4478-bdd2-1a568423b13f
+25/04/06 13:47:05 INFO ShutdownHookManager: Deleting directory /tmp/spark-00a8b2a6-c774-4483-92b2-14637682b315/pyspark-8e8c231e-4f7c-460c-aa45-c68979dc5212
+25/04/06 13:47:05 INFO ShutdownHookManager: Deleting directory /tmp/spark-00a8b2a6-c774-4483-92b2-14637682b315
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:49:26 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:49:26 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:49:26 INFO ResourceUtils: ==============================================================
+25/04/06 13:49:26 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:49:26 INFO ResourceUtils: ==============================================================
+25/04/06 13:49:26 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:49:26 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:49:26 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:49:26 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:49:26 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:49:26 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:49:26 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:49:26 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:49:26 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:49:27 INFO Utils: Successfully started service 'sparkDriver' on port 39381.
+25/04/06 13:49:27 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:49:27 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:49:27 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:49:27 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:49:27 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:49:27 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-db5b5e8d-0e9d-44cc-83a0-24db271181bb
+25/04/06 13:49:27 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:49:27 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:49:27 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:49:27 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:49:27 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:49:27 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 22 ms (0 ms spent in bootstraps)
+25/04/06 13:49:27 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406134927-0060
+25/04/06 13:49:27 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134927-0060/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:49:27 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134927-0060/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:49:27 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134927-0060/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:49:27 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134927-0060/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:49:27 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406134927-0060/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:49:27 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406134927-0060/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:49:27 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46623.
+25/04/06 13:49:27 INFO NettyBlockTransferService: Server created on f2a344a33cdc:46623
+25/04/06 13:49:27 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:49:27 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 46623, None)
+25/04/06 13:49:27 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:46623 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 46623, None)
+25/04/06 13:49:27 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134927-0060/1 is now RUNNING
+25/04/06 13:49:27 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134927-0060/0 is now RUNNING
+25/04/06 13:49:27 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 46623, None)
+25/04/06 13:49:27 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406134927-0060/2 is now RUNNING
+25/04/06 13:49:27 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 46623, None)
+25/04/06 13:49:27 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:49:27 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:49:28 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:49:29 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:49:29 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:49:29 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:49:29 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:49:29 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:49:29 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:49:29 INFO metastore: Connected to metastore.
+25/04/06 13:49:29 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:55886) with ID 1,  ResourceProfileId 0
+25/04/06 13:49:29 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:48738) with ID 0,  ResourceProfileId 0
+25/04/06 13:49:29 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:43430) with ID 2,  ResourceProfileId 0
+25/04/06 13:49:29 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:39437 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 39437, None)
+25/04/06 13:49:29 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:41605 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 41605, None)
+25/04/06 13:49:29 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:34299 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 34299, None)
+25/04/06 13:49:31 INFO InMemoryFileIndex: It took 54 ms to list leaf files for 1 paths.
+25/04/06 13:49:31 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:49:31 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:49:31 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:49:31 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:49:31 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:49:31 INFO BlockManager: BlockManager stopped
+25/04/06 13:49:31 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:49:31 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:49:31 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:49:31 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:49:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-fc909476-2159-43ff-9682-e15b0e6c2e6d
+25/04/06 13:49:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-bbdeef5b-967e-4b04-9b29-2593c7238951
+25/04/06 13:49:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-bbdeef5b-967e-4b04-9b29-2593c7238951/pyspark-74cc7e46-e12c-4093-9583-7da7b5c17d22
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:50:22 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:50:22 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:50:22 INFO ResourceUtils: ==============================================================
+25/04/06 13:50:22 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:50:22 INFO ResourceUtils: ==============================================================
+25/04/06 13:50:22 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:50:22 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:50:22 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:50:22 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:50:22 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:50:22 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:50:22 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:50:22 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:50:22 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:50:22 INFO Utils: Successfully started service 'sparkDriver' on port 34827.
+25/04/06 13:50:23 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:50:23 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:50:23 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:50:23 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:50:23 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:50:23 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-bc9a5023-d18f-4fdc-8ad9-eb56994e0e30
+25/04/06 13:50:23 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:50:23 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:50:23 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:50:23 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:50:23 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:50:23 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 22 ms (0 ms spent in bootstraps)
+25/04/06 13:50:23 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406135023-0063
+25/04/06 13:50:23 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135023-0063/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:50:23 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135023-0063/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:50:23 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135023-0063/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:50:23 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135023-0063/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:50:23 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135023-0063/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:50:23 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135023-0063/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:50:23 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 44367.
+25/04/06 13:50:23 INFO NettyBlockTransferService: Server created on f2a344a33cdc:44367
+25/04/06 13:50:23 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:50:23 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 44367, None)
+25/04/06 13:50:23 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:44367 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 44367, None)
+25/04/06 13:50:23 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135023-0063/0 is now RUNNING
+25/04/06 13:50:23 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135023-0063/2 is now RUNNING
+25/04/06 13:50:23 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 44367, None)
+25/04/06 13:50:23 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135023-0063/1 is now RUNNING
+25/04/06 13:50:23 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 44367, None)
+25/04/06 13:50:23 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:50:23 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:50:23 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:50:25 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:50:25 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:50:25 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:50:25 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:50:25 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:50:25 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:50:25 INFO metastore: Connected to metastore.
+25/04/06 13:50:25 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:60234) with ID 0,  ResourceProfileId 0
+25/04/06 13:50:25 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:52310) with ID 2,  ResourceProfileId 0
+25/04/06 13:50:25 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:59502) with ID 1,  ResourceProfileId 0
+25/04/06 13:50:25 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:40277 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 40277, None)
+25/04/06 13:50:25 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:41827 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 41827, None)
+25/04/06 13:50:25 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:46829 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 46829, None)
+25/04/06 13:50:27 INFO InMemoryFileIndex: It took 52 ms to list leaf files for 1 paths.
+25/04/06 13:50:27 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:50:27 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:50:27 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:50:27 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:50:27 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:50:27 INFO BlockManager: BlockManager stopped
+25/04/06 13:50:27 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:50:27 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:50:27 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:50:27 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:50:27 INFO ShutdownHookManager: Deleting directory /tmp/spark-db014dd8-be38-4fd1-8e91-cc6bc454388f/pyspark-853c7425-cdb5-4698-bc1d-45e27c1e7a1a
+25/04/06 13:50:27 INFO ShutdownHookManager: Deleting directory /tmp/spark-6943ff24-4542-4c7e-89cf-295c602cd956
+25/04/06 13:50:27 INFO ShutdownHookManager: Deleting directory /tmp/spark-db014dd8-be38-4fd1-8e91-cc6bc454388f
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:51:38 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:51:38 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:51:38 INFO ResourceUtils: ==============================================================
+25/04/06 13:51:38 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:51:38 INFO ResourceUtils: ==============================================================
+25/04/06 13:51:38 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:51:38 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:51:38 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:51:38 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:51:38 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:51:38 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:51:38 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:51:38 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:51:38 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:51:38 INFO Utils: Successfully started service 'sparkDriver' on port 42997.
+25/04/06 13:51:38 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:51:38 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:51:38 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:51:38 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:51:38 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:51:38 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-6d9ba91a-0dc4-4233-9bcc-d934f973ff91
+25/04/06 13:51:38 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:51:38 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:51:38 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:51:39 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:51:39 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:51:39 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 24 ms (0 ms spent in bootstraps)
+25/04/06 13:51:39 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406135139-0066
+25/04/06 13:51:39 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135139-0066/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:51:39 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135139-0066/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:51:39 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135139-0066/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:51:39 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135139-0066/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:51:39 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135139-0066/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:51:39 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135139-0066/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:51:39 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34377.
+25/04/06 13:51:39 INFO NettyBlockTransferService: Server created on f2a344a33cdc:34377
+25/04/06 13:51:39 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:51:39 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 34377, None)
+25/04/06 13:51:39 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:34377 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 34377, None)
+25/04/06 13:51:39 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135139-0066/1 is now RUNNING
+25/04/06 13:51:39 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135139-0066/0 is now RUNNING
+25/04/06 13:51:39 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135139-0066/2 is now RUNNING
+25/04/06 13:51:39 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 34377, None)
+25/04/06 13:51:39 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 34377, None)
+25/04/06 13:51:39 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:51:39 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:51:39 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:51:40 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:51:41 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:51:41 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:51:41 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:51:41 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:51:41 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:51:41 INFO metastore: Connected to metastore.
+25/04/06 13:51:41 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:58004) with ID 1,  ResourceProfileId 0
+25/04/06 13:51:41 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:47948) with ID 0,  ResourceProfileId 0
+25/04/06 13:51:41 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:47648) with ID 2,  ResourceProfileId 0
+25/04/06 13:51:41 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:36771 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 36771, None)
+25/04/06 13:51:41 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:42481 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 42481, None)
+25/04/06 13:51:41 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:35507 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 35507, None)
+25/04/06 13:51:43 INFO InMemoryFileIndex: It took 27 ms to list leaf files for 1 paths.
+25/04/06 13:51:43 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:51:43 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:51:43 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:51:43 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:51:43 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:51:43 INFO BlockManager: BlockManager stopped
+25/04/06 13:51:43 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:51:43 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:51:43 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:51:43 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:51:43 INFO ShutdownHookManager: Deleting directory /tmp/spark-23c59b9c-7e13-43fc-ab18-a8b2421bde3d
+25/04/06 13:51:43 INFO ShutdownHookManager: Deleting directory /tmp/spark-9ba9e881-2d09-491c-be21-da45e5c995bc
+25/04/06 13:51:43 INFO ShutdownHookManager: Deleting directory /tmp/spark-9ba9e881-2d09-491c-be21-da45e5c995bc/pyspark-d81ed735-a860-4405-95b6-b514d9fcb185
+Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/06 13:53:05 INFO SparkContext: Running Spark version 3.2.2
+25/04/06 13:53:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/06 13:53:05 INFO ResourceUtils: ==============================================================
+25/04/06 13:53:05 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/06 13:53:05 INFO ResourceUtils: ==============================================================
+25/04/06 13:53:05 INFO SparkContext: Submitted application: Delete processed logs
+25/04/06 13:53:05 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/06 13:53:05 INFO ResourceProfile: Limiting resource is cpu
+25/04/06 13:53:05 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/06 13:53:05 INFO SecurityManager: Changing view acls to: root
+25/04/06 13:53:05 INFO SecurityManager: Changing modify acls to: root
+25/04/06 13:53:05 INFO SecurityManager: Changing view acls groups to: 
+25/04/06 13:53:05 INFO SecurityManager: Changing modify acls groups to: 
+25/04/06 13:53:05 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/06 13:53:05 INFO Utils: Successfully started service 'sparkDriver' on port 33877.
+25/04/06 13:53:05 INFO SparkEnv: Registering MapOutputTracker
+25/04/06 13:53:05 INFO SparkEnv: Registering BlockManagerMaster
+25/04/06 13:53:05 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/06 13:53:05 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/06 13:53:05 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/06 13:53:05 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-be937d51-3d9b-4cd0-b066-422b7c7cb367
+25/04/06 13:53:05 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/06 13:53:05 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/06 13:53:06 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/06 13:53:06 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://f2a344a33cdc:4040
+25/04/06 13:53:06 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/06 13:53:06 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.13:7077 after 23 ms (0 ms spent in bootstraps)
+25/04/06 13:53:06 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250406135306-0069
+25/04/06 13:53:06 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135306-0069/0 on worker-20250406115929-172.18.0.10-40655 (172.18.0.10:40655) with 4 core(s)
+25/04/06 13:53:06 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135306-0069/0 on hostPort 172.18.0.10:40655 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:53:06 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135306-0069/1 on worker-20250406115929-172.18.0.3-38295 (172.18.0.3:38295) with 4 core(s)
+25/04/06 13:53:06 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135306-0069/1 on hostPort 172.18.0.3:38295 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:53:06 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250406135306-0069/2 on worker-20250406115929-172.18.0.2-44483 (172.18.0.2:44483) with 4 core(s)
+25/04/06 13:53:06 INFO StandaloneSchedulerBackend: Granted executor ID app-20250406135306-0069/2 on hostPort 172.18.0.2:44483 with 4 core(s), 1024.0 MiB RAM
+25/04/06 13:53:06 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 38235.
+25/04/06 13:53:06 INFO NettyBlockTransferService: Server created on f2a344a33cdc:38235
+25/04/06 13:53:06 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/06 13:53:06 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f2a344a33cdc, 38235, None)
+25/04/06 13:53:06 INFO BlockManagerMasterEndpoint: Registering block manager f2a344a33cdc:38235 with 366.3 MiB RAM, BlockManagerId(driver, f2a344a33cdc, 38235, None)
+25/04/06 13:53:06 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135306-0069/0 is now RUNNING
+25/04/06 13:53:06 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135306-0069/2 is now RUNNING
+25/04/06 13:53:06 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f2a344a33cdc, 38235, None)
+25/04/06 13:53:06 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250406135306-0069/1 is now RUNNING
+25/04/06 13:53:06 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f2a344a33cdc, 38235, None)
+25/04/06 13:53:06 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/06 13:53:06 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/06 13:53:06 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/06 13:53:08 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:53:08 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/06 13:53:08 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/06 13:53:08 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/06 13:53:08 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/06 13:53:08 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/06 13:53:08 INFO metastore: Connected to metastore.
+25/04/06 13:53:08 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:35586) with ID 1,  ResourceProfileId 0
+25/04/06 13:53:08 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.2:33938) with ID 2,  ResourceProfileId 0
+25/04/06 13:53:08 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:58056) with ID 0,  ResourceProfileId 0
+25/04/06 13:53:08 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:42307 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 42307, None)
+25/04/06 13:53:08 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:34649 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 34649, None)
+25/04/06 13:53:08 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.2:35789 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.2, 35789, None)
+25/04/06 13:53:10 INFO InMemoryFileIndex: It took 52 ms to list leaf files for 1 paths.
+25/04/06 13:53:10 INFO SparkUI: Stopped Spark web UI at http://f2a344a33cdc:4040
+25/04/06 13:53:10 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/06 13:53:10 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/06 13:53:10 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/06 13:53:10 INFO MemoryStore: MemoryStore cleared
+25/04/06 13:53:10 INFO BlockManager: BlockManager stopped
+25/04/06 13:53:10 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/06 13:53:10 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/06 13:53:10 INFO SparkContext: Successfully stopped SparkContext
+25/04/06 13:53:10 INFO ShutdownHookManager: Shutdown hook called
+25/04/06 13:53:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-1c485b60-83cd-43ea-b586-ede0e4fd1cde
+25/04/06 13:53:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-7fc14cfc-793f-4122-a3f6-4713ab6c758f
+25/04/06 13:53:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-7fc14cfc-793f-4122-a3f6-4713ab6c758f/pyspark-14350468-ff36-40dd-8c10-a6efc3fe248d
+Spark job completed successfully.

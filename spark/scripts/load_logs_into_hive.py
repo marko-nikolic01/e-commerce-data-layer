@@ -40,7 +40,7 @@ df = df.select(
     col("InvoiceDate").cast("string").alias("invoicedate")
 ).dropDuplicates(["invoiceno", "stockcode"])
 
-# Create Hive table if not exists
+# Create Hive tables if not exists
 spark.sql(f"""
     CREATE TABLE IF NOT EXISTS {HIVE_TABLE} (
         InvoiceNo INT,
@@ -50,6 +50,18 @@ spark.sql(f"""
         Country STRING
     )
     PARTITIONED BY (InvoiceDate STRING)
+    STORED AS PARQUET
+""")
+
+spark.sql(f"""
+    CREATE TABLE IF NOT EXISTS unprocessed{HIVE_TABLE} (
+        InvoiceNo INT,
+        StockCode INT,
+        Quantity INT,
+        CustomerID INT,
+        Country STRING,
+        Invoicedate String
+    )
     STORED AS PARQUET
 """)
 
