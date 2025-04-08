@@ -233,6 +233,20 @@ services:
       - shared_network
     restart: always
 
+  metabase:
+    image: metabase/metabase:v0.53.x
+    container_name: metabase
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./metabase/metabase_data/:/metabase-data
+    env_file:
+      - ./metabase/metabase.env
+    networks:
+      - shared_network
+
 volumes:
   hadoop_namenode: {}
   hadoop_datanode1: {}

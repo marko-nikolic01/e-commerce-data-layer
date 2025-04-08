@@ -32,10 +32,10 @@ df = df.filter(hour(col("InvoiceDate")).isin(last_4_hours))
 # Cast columns and drop duplicates
 df = df.withColumn("InvoiceDate", date_format(col("InvoiceDate"), "yyyy-MM-dd-HH-mm"))
 df = df.select(
-    col("InvoiceNo").cast("int").alias("invoiceno"),
-    col("StockCode").cast("int").alias("stockcode"),
+    col("InvoiceNo").cast("string").alias("invoiceno"),
+    col("StockCode").cast("string").alias("stockcode"),
     col("Quantity").cast("int").alias("quantity"),
-    col("CustomerID").cast("int").alias("customerid"),
+    col("CustomerID").cast("string").alias("customerid"),
     col("Country").cast("string").alias("country"),
     col("InvoiceDate").cast("string").alias("invoicedate")
 ).dropDuplicates(["invoiceno", "stockcode"])
@@ -43,10 +43,10 @@ df = df.select(
 # Create Hive tables if not exists
 spark.sql(f"""
     CREATE TABLE IF NOT EXISTS {HIVE_TABLE} (
-        InvoiceNo INT,
-        StockCode INT,
+        InvoiceNo STRING,
+        StockCode STRING,
         Quantity INT,
-        CustomerID INT,
+        CustomerID STRING,
         Country STRING
     )
     PARTITIONED BY (InvoiceDate STRING)
@@ -55,23 +55,15 @@ spark.sql(f"""
 
 spark.sql(f"""
     CREATE TABLE IF NOT EXISTS unprocessed{HIVE_TABLE} (
-        InvoiceNo INT,
-        StockCode INT,
+        InvoiceNo STRING,
+        StockCode STRING,
         Quantity INT,
-        CustomerID INT,
+        CustomerID STRING,
         Country STRING,
-        Invoicedate String
+        Invoicedate STRING
     )
     STORED AS PARQUET
 """)
-
-if spark._jsparkSession.catalog().tableExists(HIVE_TABLE):
-    existing_df = spark.table(HIVE_TABLE)
-
-    print("\n\n\n")
-    print(existing_df.count())
-    print("\n\n\n")
-    existing_df.show()
 
 # Insert new rows
 if df.count() > 0:

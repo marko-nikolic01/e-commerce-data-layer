@@ -92,7 +92,7 @@ logs = logs \
 # Create sale items by joining logs and products and calculating the sale item price by the invoice date and the product price on that date
 logs = logs.withColumn("InvoiceDateShort", date_format("InvoiceDateTS", "yyyy-MM-dd"))
 
-product_prices = products.select("StockCode", "UnitPrice", "Date").withColumnRenamed("Date", "ProductDate")
+product_prices = products.select("StockCode", "UnitPrice", "Date", "ProductName").withColumnRenamed("Date", "ProductDate")
 
 sale_items = logs \
     .join(product_prices, (logs["StockCode"] == product_prices["StockCode"]) &
@@ -100,6 +100,7 @@ sale_items = logs \
     .select(
         "InvoiceNo",
         logs["StockCode"],
+        "ProductName",
         "Quantity",
         (logs["Quantity"] * product_prices["UnitPrice"]).alias("Price")
     )
@@ -137,7 +138,6 @@ properties = {
 sales.write.jdbc(url=POSTGRES_DB, table=SALES_TABLE, mode="append", properties=properties)
 sale_items.write.jdbc(url=POSTGRES_DB, table=SALE_ITEMS_TABLE, mode="append", properties=properties)
 products.write.jdbc(url=POSTGRES_DB, table=PRODUCTS_TABLE, mode="append", properties=properties)
-
 
 # Save unprocessed logs to a temporary file
 unprocessed_logs = unprocessed_logs.withColumn(

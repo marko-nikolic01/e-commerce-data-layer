@@ -17,10 +17,6 @@ HIVE_TABLE = "unprocessedlogs"
 # Read CSV data
 logs = spark.read.parquet(LOGS_PARQUET_PATH)
 
-spark.sql(f"""
-    DROP TABLE IF EXISTS {HIVE_TABLE}
-""")
-
 # Reset Hive table
 spark.sql(f"""
     DROP TABLE IF EXISTS {HIVE_TABLE}
@@ -28,10 +24,10 @@ spark.sql(f"""
 
 spark.sql(f"""
     CREATE TABLE IF NOT EXISTS {HIVE_TABLE} (
-        InvoiceNo INT,
-        StockCode INT,
+        InvoiceNo STRING,
+        StockCode STRING,
         Quantity INT,
-        CustomerID INT,
+        CustomerID STRING,
         Country STRING,
         InvoiceDate STRING
     )
