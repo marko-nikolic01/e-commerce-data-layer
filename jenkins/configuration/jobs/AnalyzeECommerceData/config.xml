@@ -31,6 +31,11 @@ export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=postgres
 export POSTGRES_URI=jdbc:postgresql://postgres:5432
 export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+export EMAIL_SENDER=marketeam.auto@gmail.com
+export EMAIL_PASSWORD=ncybggsscgjiwdhq
+export SMTP_HOST=smtp.gmail.com
+export SMTP_PORT=587
+export EMAIL_RECIPIENT=nikolicmarko1243@gmail.com
 
 /opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 --jars /opt/bitnami/spark/jars/postgresql-42.2.23.jar /opt/bitnami/spark/jobs/analyze_e_commerce_data.py 2&gt;&amp;1 | tee -a &quot;$LOG_FILE&quot;
 

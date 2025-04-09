@@ -1,9 +1,11 @@
 import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf, split, to_date, to_timestamp, date_format, sum
-from pyspark.sql.types import StringType
+from pyspark.sql.types import StringType, TimestampType
 from pyspark.sql import functions as F
+from pyspark.sql.window import Window
 from datetime import datetime, timedelta
+from detect_order_anomalies import detect_order_anomalies
 
 # Replace region code with region name
 def get_region(id):
@@ -39,7 +41,7 @@ POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
 POSTGRES_URI = os.environ["POSTGRES_URI"]
 POSTGRES_DB = f"{POSTGRES_URI}/ecommerce"
 
-# Hive tables
+# Hive/PostgreSQL tables
 COUNTRIES_TABLE="countries"
 PRODUCTS_TABLE= "products"
 LOGS_TABLE="logs"
@@ -147,6 +149,9 @@ unprocessed_logs = unprocessed_logs.withColumn(
     .dropDuplicates(["InvoiceNo", "StockCode"])
 
 unprocessed_logs.coalesce(1).write.mode("overwrite").parquet(LOGS_PARQUET_PATH)
+
+# Detect order anomalies
+detect_order_anomalies(spark, sale_items, logs)
 
 # Stop Spark Session
 spark.stop()
