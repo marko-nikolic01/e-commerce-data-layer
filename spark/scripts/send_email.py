@@ -13,7 +13,7 @@ def send_email(subject, body_html):
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"] = sender_email
-    msg["To"] = ", ".join([recipient])
+    msg["To"] = recipient
 
     part = MIMEText(body_html, "html")
     msg.attach(part)

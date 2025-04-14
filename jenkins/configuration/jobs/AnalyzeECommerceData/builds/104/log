@@ -1,0 +1,224 @@
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/AnalyzeECommerceData
+[SSH] script:
+PATH="/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+JAVA_HOME="/opt/java/openjdk"
+CI="true"
+HOME="/root"
+
+echo "Starting Spark job..." | tee -a spark_job.log
+
+LOG_FILE=/opt/bitnami/spark/logs/analyze_e_commerce_data.log
+
+export JAVA_HOME=/opt/bitnami/java
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$PATH:/opt/bitnami/python/bin
+export PYSPARK_PYTHON=/opt/bitnami/python/bin/python3
+export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+export POSTGRES_USER=postgres
+export POSTGRES_PASSWORD=postgres
+export POSTGRES_URI=jdbc:postgresql://postgres:5432
+export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+export EMAIL_SENDER=marketeam.auto@gmail.com
+export EMAIL_PASSWORD=ncybggsscgjiwdhq
+export SMTP_HOST=smtp.gmail.com
+export SMTP_PORT=587
+export EMAIL_RECIPIENT=nikolicmarko1243@gmail.com
+
+/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 --jars /opt/bitnami/spark/jars/postgresql-42.2.23.jar /opt/bitnami/spark/jobs/analyze_e_commerce_data.py 2>&1 | tee -a "$LOG_FILE"
+
+exit_code=${PIPESTATUS[0]}
+
+if [ $exit_code -ne 0 ]; then
+  echo "Spark job FAILED!" | tee -a "$LOG_FILE"
+  exit 1
+else
+  echo "Spark job completed successfully." | tee -a "$LOG_FILE"
+fi
+
+
+[SSH] executing...
+Starting Spark job...
+25/04/11 07:03:18 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/11 07:03:19 INFO SparkContext: Running Spark version 3.2.2
+25/04/11 07:03:19 INFO ResourceUtils: ==============================================================
+25/04/11 07:03:19 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/11 07:03:19 INFO ResourceUtils: ==============================================================
+25/04/11 07:03:19 INFO SparkContext: Submitted application: Analyze e-commerce data
+25/04/11 07:03:19 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/11 07:03:19 INFO ResourceProfile: Limiting resource is cpu
+25/04/11 07:03:19 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/11 07:03:19 INFO SecurityManager: Changing view acls to: root
+25/04/11 07:03:19 INFO SecurityManager: Changing modify acls to: root
+25/04/11 07:03:19 INFO SecurityManager: Changing view acls groups to: 
+25/04/11 07:03:19 INFO SecurityManager: Changing modify acls groups to: 
+25/04/11 07:03:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/11 07:03:19 INFO Utils: Successfully started service 'sparkDriver' on port 42959.
+25/04/11 07:03:19 INFO SparkEnv: Registering MapOutputTracker
+25/04/11 07:03:19 INFO SparkEnv: Registering BlockManagerMaster
+25/04/11 07:03:19 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/11 07:03:19 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/11 07:03:19 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/11 07:03:19 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-34c94b37-b4d4-410a-bf41-b3f7a45bfdf7
+25/04/11 07:03:19 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/11 07:03:19 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/11 07:03:19 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/04/11 07:03:19 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+25/04/11 07:03:19 WARN Utils: Service 'SparkUI' could not bind on port 4042. Attempting port 4043.
+25/04/11 07:03:19 WARN Utils: Service 'SparkUI' could not bind on port 4043. Attempting port 4044.
+25/04/11 07:03:19 INFO Utils: Successfully started service 'SparkUI' on port 4044.
+25/04/11 07:03:19 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://b5b8e71ba50b:4044
+25/04/11 07:03:19 INFO SparkContext: Added JAR /opt/bitnami/spark/jars/postgresql-42.2.23.jar at spark://b5b8e71ba50b:42959/jars/postgresql-42.2.23.jar with timestamp 1744354999318
+25/04/11 07:03:20 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/11 07:03:20 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.14:7077 after 24 ms (0 ms spent in bootstraps)
+25/04/11 07:03:20 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250411070320-0005
+25/04/11 07:03:20 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46001.
+25/04/11 07:03:20 INFO NettyBlockTransferService: Server created on b5b8e71ba50b:46001
+25/04/11 07:03:20 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/11 07:03:20 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, b5b8e71ba50b, 46001, None)
+25/04/11 07:03:20 INFO BlockManagerMasterEndpoint: Registering block manager b5b8e71ba50b:46001 with 366.3 MiB RAM, BlockManagerId(driver, b5b8e71ba50b, 46001, None)
+25/04/11 07:03:20 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, b5b8e71ba50b, 46001, None)
+25/04/11 07:03:20 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, b5b8e71ba50b, 46001, None)
+25/04/11 07:03:20 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/11 07:03:20 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/11 07:03:20 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/11 07:03:21 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/11 07:03:21 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/11 07:03:21 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/11 07:03:21 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/11 07:03:21 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/11 07:03:21 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/11 07:03:21 INFO metastore: Connected to metastore.
+25/04/11 07:03:22 INFO InMemoryFileIndex: It took 60 ms to list leaf files for 1 paths.
+25/04/11 07:03:23 INFO InMemoryFileIndex: It took 2 ms to list leaf files for 1 paths.
+25/04/11 07:03:24 INFO SQLStdHiveAccessController: Created SQLStdHiveAccessController for session context : HiveAuthzSessionContext [sessionString=3155641e-1fb8-4203-b868-49348c08aeb8, clientType=HIVECLI]
+25/04/11 07:03:24 WARN SessionState: METASTORE_FILTER_HOOK will be ignored, since hive.security.authorization.manager is set to instance of HiveAuthorizerFactory.
+25/04/11 07:03:24 INFO metastore: Mestastore configuration hive.metastore.filter.hook changed from org.apache.hadoop.hive.metastore.DefaultMetaStoreFilterHookImpl to org.apache.hadoop.hive.ql.security.authorization.plugin.AuthorizationMetaStoreFilterHook
+25/04/11 07:03:24 INFO metastore: Closed a connection to metastore, current connections: 0
+25/04/11 07:03:24 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/11 07:03:24 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/11 07:03:24 INFO metastore: Connected to metastore.
+25/04/11 07:03:24 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/11 07:03:24 INFO metastore: Opened a connection to metastore, current connections: 2
+25/04/11 07:03:24 INFO metastore: Connected to metastore.
+25/04/11 07:03:24 INFO InMemoryFileIndex: It took 0 ms to list leaf files for 0 paths.
+25/04/11 07:03:24 INFO InMemoryFileIndex: It took 4 ms to list leaf files for 2 paths.
+25/04/11 07:03:25 INFO InMemoryFileIndex: It took 0 ms to list leaf files for 0 paths.
+25/04/11 07:03:25 INFO DataSourceStrategy: Pruning directories with: (gettimestamp(InvoiceDate#32, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false) >= 2025-04-11 03:00:00),(gettimestamp(InvoiceDate#32, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false) <= 2025-04-11 07:00:00),isnotnull(date_format(gettimestamp(InvoiceDate#32, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false), yyyy-MM-dd, Some(Etc/UTC)))
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(Country),IsNotNull(StockCode),IsNotNull(InvoiceNo)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(Country#31),isnotnull(split(Country#31, -, -1)[0]),isnotnull(StockCode#28),isnotnull(InvoiceNo#27)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<InvoiceNo: string, StockCode: string, Quantity: int, Country: string ... 2 more fields>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(CountryId#0)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(Country),IsNotNull(StockCode),IsNotNull(InvoiceNo)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(Country#57),isnotnull(split(Country#57, -, -1)[0]),isnotnull(StockCode#54),isnotnull(date_format(gettimestamp(InvoiceDate#58, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false), yyyy-MM-dd, Some(Etc/UTC))),isnotnull(InvoiceNo#53)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<InvoiceNo: string, StockCode: string, Quantity: int, Country: string, InvoiceDate: string ... 3 more fields>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(CountryId#0)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(countryid#141)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int>
+25/04/11 07:03:25 INFO DataSourceStrategy: Pruning directories with: isnotnull(cast(gettimestamp(Date#10, yyyy-MM-dd, TimestampType, Some(Etc/UTC), false) as date)),dynamicpruning#338 [date_format(cast(cast(gettimestamp(Date#10, yyyy-MM-dd, TimestampType, Some(Etc/UTC), false) as date) as timestamp), yyyy-MM-dd, Some(Etc/UTC))]
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(StockCode)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(StockCode#6)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<StockCode: string, UnitPrice: decimal(10,5)>
+25/04/11 07:03:25 INFO DataSourceStrategy: Pruning directories with: (gettimestamp(InvoiceDate#237, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false) >= 2025-04-11 03:00:00),(gettimestamp(InvoiceDate#237, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false) <= 2025-04-11 07:00:00)
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(Country),IsNotNull(InvoiceNo)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(Country#236),isnotnull(split(Country#236, -, -1)[0]),isnotnull(InvoiceNo#232)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<InvoiceNo: string, CustomerID: string, Country: string ... 1 more fields>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(CountryId#244)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(Country),IsNotNull(InvoiceNo)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(Country#242),isnotnull(split(Country#242, -, -1)[0]),isnotnull(InvoiceNo#238)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<InvoiceNo: string, CustomerID: string, Country: string, InvoiceDate: string ... 2 more fields>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(CountryId#244)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(countryid#246)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int, countryname: string>
+25/04/11 07:03:25 INFO DataSourceStrategy: Pruning directories with: (gettimestamp(InvoiceDate#32, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false) >= 2025-04-11 03:00:00),(gettimestamp(InvoiceDate#32, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false) <= 2025-04-11 07:00:00),isnotnull(date_format(gettimestamp(InvoiceDate#32, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false), yyyy-MM-dd, Some(Etc/UTC)))
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(Country),IsNotNull(StockCode),IsNotNull(InvoiceNo)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(Country#31),isnotnull(split(Country#31, -, -1)[0]),isnotnull(StockCode#28),isnotnull(InvoiceNo#27)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<InvoiceNo: string, StockCode: string, Quantity: int, Country: string ... 2 more fields>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(CountryId#0)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(Country),IsNotNull(StockCode),IsNotNull(InvoiceNo)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(Country#57),isnotnull(split(Country#57, -, -1)[0]),isnotnull(StockCode#54),isnotnull(date_format(gettimestamp(InvoiceDate#58, yyyy-MM-dd-HH-mm, TimestampType, Some(Etc/UTC), false), yyyy-MM-dd, Some(Etc/UTC))),isnotnull(InvoiceNo#53)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<InvoiceNo: string, StockCode: string, Quantity: int, Country: string, InvoiceDate: string ... 3 more fields>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(CountryId#0)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int>
+25/04/11 07:03:25 INFO FileSourceStrategy: Pushed Filters: IsNotNull(countryid)
+25/04/11 07:03:25 INFO FileSourceStrategy: Post-Scan Filters: isnotnull(countryid#141)
+25/04/11 07:03:25 INFO FileSourceStrategy: Output Data Schema: struct<countryid: int>
+25/04/11 07:03:25 INFO CodeGenerator: Code generated in 173.124224 ms
+25/04/11 07:03:25 INFO CodeGenerator: Code generated in 173.119964 ms
+25/04/11 07:03:25 INFO CodeGenerator: Code generated in 172.626391 ms
+25/04/11 07:03:25 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 351.0 KiB, free 365.3 MiB)
+25/04/11 07:03:25 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 350.6 KiB, free 365.3 MiB)
+25/04/11 07:03:25 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 350.3 KiB, free 365.3 MiB)
+25/04/11 07:03:25 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 33.8 KiB, free 365.2 MiB)
+25/04/11 07:03:25 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 33.8 KiB, free 365.2 MiB)
+25/04/11 07:03:25 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 33.7 KiB, free 365.2 MiB)
+25/04/11 07:03:25 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on b5b8e71ba50b:46001 (size: 33.8 KiB, free: 366.3 MiB)
+25/04/11 07:03:25 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on b5b8e71ba50b:46001 (size: 33.8 KiB, free: 366.2 MiB)
+25/04/11 07:03:25 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on b5b8e71ba50b:46001 (size: 33.7 KiB, free: 366.2 MiB)
+25/04/11 07:03:25 INFO SparkContext: Created broadcast 2 from $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/04/11 07:03:25 INFO SparkContext: Created broadcast 1 from $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/04/11 07:03:25 INFO SparkContext: Created broadcast 0 from $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/04/11 07:03:25 INFO InMemoryFileIndex: Selected 2 partitions out of 2, pruned 0.0% partitions.
+25/04/11 07:03:25 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4195506 bytes, open cost is considered as scanning 4194304 bytes.
+25/04/11 07:03:25 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4195506 bytes, open cost is considered as scanning 4194304 bytes.
+25/04/11 07:03:25 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4200212 bytes, open cost is considered as scanning 4194304 bytes.
+25/04/11 07:03:25 INFO SparkContext: Starting job: $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/04/11 07:03:25 INFO SparkContext: Starting job: $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/04/11 07:03:25 INFO SparkContext: Starting job: $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266
+25/04/11 07:03:25 INFO DAGScheduler: Got job 0 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) with 2 output partitions
+25/04/11 07:03:25 INFO DAGScheduler: Final stage: ResultStage 0 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266)
+25/04/11 07:03:25 INFO DAGScheduler: Parents of final stage: List()
+25/04/11 07:03:25 INFO DAGScheduler: Missing parents: List()
+25/04/11 07:03:25 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[11] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266), which has no missing parents
+25/04/11 07:03:25 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 16.2 KiB, free 365.2 MiB)
+25/04/11 07:03:25 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 7.2 KiB, free 365.2 MiB)
+25/04/11 07:03:25 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on b5b8e71ba50b:46001 (size: 7.2 KiB, free: 366.2 MiB)
+25/04/11 07:03:25 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1478
+25/04/11 07:03:25 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 0 (MapPartitionsRDD[11] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) (first 15 tasks are for partitions Vector(0, 1))
+25/04/11 07:03:25 INFO TaskSchedulerImpl: Adding task set 0.0 with 2 tasks resource profile 0
+25/04/11 07:03:26 INFO DAGScheduler: Got job 2 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) with 2 output partitions
+25/04/11 07:03:26 INFO DAGScheduler: Final stage: ResultStage 1 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266)
+25/04/11 07:03:26 INFO DAGScheduler: Parents of final stage: List()
+25/04/11 07:03:26 INFO DAGScheduler: Missing parents: List()
+25/04/11 07:03:26 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[9] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266), which has no missing parents
+25/04/11 07:03:26 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 13.5 KiB, free 365.1 MiB)
+25/04/11 07:03:26 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 6.0 KiB, free 365.1 MiB)
+25/04/11 07:03:26 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on b5b8e71ba50b:46001 (size: 6.0 KiB, free: 366.2 MiB)
+25/04/11 07:03:26 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1478
+25/04/11 07:03:26 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 1 (MapPartitionsRDD[9] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) (first 15 tasks are for partitions Vector(0, 1))
+25/04/11 07:03:26 INFO TaskSchedulerImpl: Adding task set 1.0 with 2 tasks resource profile 0
+25/04/11 07:03:26 INFO DAGScheduler: Got job 1 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) with 2 output partitions
+25/04/11 07:03:26 INFO DAGScheduler: Final stage: ResultStage 2 ($anonfun$withThreadLocalCaptured$1 at FutureTask.java:266)
+25/04/11 07:03:26 INFO DAGScheduler: Parents of final stage: List()
+25/04/11 07:03:26 INFO DAGScheduler: Missing parents: List()
+25/04/11 07:03:26 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[8] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266), which has no missing parents
+25/04/11 07:03:26 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 12.8 KiB, free 365.1 MiB)
+25/04/11 07:03:26 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 5.9 KiB, free 365.1 MiB)
+25/04/11 07:03:26 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on b5b8e71ba50b:46001 (size: 5.9 KiB, free: 366.2 MiB)
+25/04/11 07:03:26 INFO SparkContext: Created broadcast 5 from broadcast at DAGScheduler.scala:1478
+25/04/11 07:03:26 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 2 (MapPartitionsRDD[8] at $anonfun$withThreadLocalCaptured$1 at FutureTask.java:266) (first 15 tasks are for partitions Vector(0, 1))
+25/04/11 07:03:26 INFO TaskSchedulerImpl: Adding task set 2.0 with 2 tasks resource profile 0
+Build was aborted
+Finished: ABORTED
