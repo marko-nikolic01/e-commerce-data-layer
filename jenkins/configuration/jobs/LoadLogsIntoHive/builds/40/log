@@ -1,0 +1,107 @@
+Started by user [8mha:////4NhrNatbXaQKljqXcoS9ngQQ7onYqNIevFDbkW/rMbA0AAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/LoadLogsIntoHive
+[SSH] executing pre build script:
+PATH="/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+JAVA_HOME="/opt/java/openjdk"
+HOME="/root"
+
+echo "Starting Spark job..." | tee -a spark_job.log
+
+LOG_FILE=/opt/bitnami/spark/logs/load_logs_into_hive.log
+
+export JAVA_HOME=/opt/bitnami/java
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$PATH:/opt/bitnami/python/bin
+export PYSPARK_PYTHON=/opt/bitnami/python/bin/python3
+export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+
+/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/load_logs_into_hive.py 2>&1 | tee -a "$LOG_FILE"
+
+exit_code=${PIPESTATUS[0]}
+
+if [ $exit_code -ne 0 ]; then
+  echo "Spark job FAILED!" | tee -a "$LOG_FILE"
+  exit 1
+else
+  echo "Spark job completed successfully." | tee -a "$LOG_FILE"
+fi
+
+Starting Spark job...
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/08 07:02:58 INFO SparkContext: Running Spark version 3.2.2
+25/04/08 07:02:58 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/08 07:02:58 INFO ResourceUtils: ==============================================================
+25/04/08 07:02:58 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/08 07:02:58 INFO ResourceUtils: ==============================================================
+25/04/08 07:02:58 INFO SparkContext: Submitted application: Load logs data into Hive
+25/04/08 07:02:58 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/08 07:02:58 INFO ResourceProfile: Limiting resource is cpu
+25/04/08 07:02:58 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/08 07:02:58 INFO SecurityManager: Changing view acls to: root
+25/04/08 07:02:58 INFO SecurityManager: Changing modify acls to: root
+25/04/08 07:02:58 INFO SecurityManager: Changing view acls groups to: 
+25/04/08 07:02:58 INFO SecurityManager: Changing modify acls groups to: 
+25/04/08 07:02:58 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/08 07:02:58 INFO Utils: Successfully started service 'sparkDriver' on port 46777.
+25/04/08 07:02:58 INFO SparkEnv: Registering MapOutputTracker
+25/04/08 07:02:58 INFO SparkEnv: Registering BlockManagerMaster
+25/04/08 07:02:58 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/08 07:02:58 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/08 07:02:58 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/08 07:02:58 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-1f0a7ffc-90bd-418e-8cbb-47553e0e7ea9
+25/04/08 07:02:58 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/08 07:02:58 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/08 07:02:59 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/08 07:02:59 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://98d2d932c324:4040
+25/04/08 07:02:59 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/08 07:02:59 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.18:7077 after 22 ms (0 ms spent in bootstraps)
+25/04/08 07:02:59 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250408070259-0010
+25/04/08 07:02:59 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250408070259-0010/0 on worker-20250407214357-172.18.0.4-36701 (172.18.0.4:36701) with 4 core(s)
+25/04/08 07:02:59 INFO StandaloneSchedulerBackend: Granted executor ID app-20250408070259-0010/0 on hostPort 172.18.0.4:36701 with 4 core(s), 1024.0 MiB RAM
+25/04/08 07:02:59 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250408070259-0010/1 on worker-20250407214357-172.18.0.7-35443 (172.18.0.7:35443) with 4 core(s)
+25/04/08 07:02:59 INFO StandaloneSchedulerBackend: Granted executor ID app-20250408070259-0010/1 on hostPort 172.18.0.7:35443 with 4 core(s), 1024.0 MiB RAM
+25/04/08 07:02:59 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250408070259-0010/2 on worker-20250407214357-172.18.0.6-37199 (172.18.0.6:37199) with 4 core(s)
+25/04/08 07:02:59 INFO StandaloneSchedulerBackend: Granted executor ID app-20250408070259-0010/2 on hostPort 172.18.0.6:37199 with 4 core(s), 1024.0 MiB RAM
+25/04/08 07:02:59 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 43017.
+25/04/08 07:02:59 INFO NettyBlockTransferService: Server created on 98d2d932c324:43017
+25/04/08 07:02:59 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/08 07:02:59 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 98d2d932c324, 43017, None)
+25/04/08 07:02:59 INFO BlockManagerMasterEndpoint: Registering block manager 98d2d932c324:43017 with 366.3 MiB RAM, BlockManagerId(driver, 98d2d932c324, 43017, None)
+25/04/08 07:02:59 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250408070259-0010/0 is now RUNNING
+25/04/08 07:02:59 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250408070259-0010/1 is now RUNNING
+25/04/08 07:02:59 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 98d2d932c324, 43017, None)
+25/04/08 07:02:59 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250408070259-0010/2 is now RUNNING
+25/04/08 07:02:59 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 98d2d932c324, 43017, None)
+25/04/08 07:02:59 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/08 07:02:59 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/08 07:02:59 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/08 07:03:01 INFO InMemoryFileIndex: It took 71 ms to list leaf files for 1 paths.
+Traceback (most recent call last):
+  File "/opt/bitnami/spark/jobs/load_logs_into_hive.py", line 21, in <module>
+    df = spark.read.option("header", True) \
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/readwriter.py", line 410, in csv
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1321, in __call__
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/utils.py", line 117, in deco
+pyspark.sql.utils.AnalysisException: Unable to infer schema for CSV. It must be specified manually.
+25/04/08 07:03:01 INFO SparkContext: Invoking stop() from shutdown hook
+25/04/08 07:03:01 INFO SparkUI: Stopped Spark web UI at http://98d2d932c324:4040
+25/04/08 07:03:01 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/08 07:03:01 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/08 07:03:01 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/08 07:03:01 INFO MemoryStore: MemoryStore cleared
+25/04/08 07:03:01 INFO BlockManager: BlockManager stopped
+25/04/08 07:03:01 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/08 07:03:01 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/08 07:03:01 INFO SparkContext: Successfully stopped SparkContext
+25/04/08 07:03:01 INFO ShutdownHookManager: Shutdown hook called
+25/04/08 07:03:01 INFO ShutdownHookManager: Deleting directory /tmp/spark-83e72fbb-32f9-46bc-a823-868e91d458c6
+25/04/08 07:03:01 INFO ShutdownHookManager: Deleting directory /tmp/spark-d0d832e5-e476-4102-8713-1c951dc51812
+25/04/08 07:03:01 INFO ShutdownHookManager: Deleting directory /tmp/spark-d0d832e5-e476-4102-8713-1c951dc51812/pyspark-a2e1cff1-c196-4687-bbc7-4ecbe263962b
+Spark job FAILED!
+
+[SSH] completed
+[SSH] exit-status: 1
+
+Sending e-mails to: nikolicmarko1243@gamail.com
+Finished: FAILURE

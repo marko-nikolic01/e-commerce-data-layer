@@ -1,0 +1,38 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause>
+            <userId>admin</userId>
+          </hudson.model.Cause_-UserIdCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <jenkins.metrics.impl.TimeInQueueAction plugin="metrics@4.2.21-464.vc9fa_a_0d6265d">
+      <queuingDurationMillis>22</queuingDurationMillis>
+      <blockedDurationMillis>0</blockedDurationMillis>
+      <buildableDurationMillis>5</buildableDurationMillis>
+      <waitingDurationMillis>1</waitingDurationMillis>
+    </jenkins.metrics.impl.TimeInQueueAction>
+    <hudson.tasks.MailMessageIdAction plugin="mailer@489.vd4b_25144138f">
+      <messageId>&lt;2114965066.1.1744355395270@b6ebb955ca26&gt;</messageId>
+    </hudson.tasks.MailMessageIdAction>
+  </actions>
+  <queueId>351</queueId>
+  <timestamp>1744355379976</timestamp>
+  <startTime>1744355379981</startTime>
+  <result>SUCCESS</result>
+  <duration>19017</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/var/jenkins_home/workspace/LoadCountriesIntoHive</workspace>
+  <hudsonVersion>2.492.2</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="java.util.Collections$UnmodifiableSet">
+    <c class="sorted-set"/>
+  </culprits>
+</build>

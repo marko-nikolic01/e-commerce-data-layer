@@ -1,0 +1,107 @@
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Started by timer
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/LoadLogsIntoHive
+[SSH] executing pre build script:
+PATH="/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+JAVA_HOME="/opt/java/openjdk"
+HOME="/root"
+
+echo "Starting Spark job..." | tee -a spark_job.log
+
+LOG_FILE=/opt/bitnami/spark/logs/load_logs_into_hive.log
+
+export JAVA_HOME=/opt/bitnami/java
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$PATH:/opt/bitnami/python/bin
+export PYSPARK_PYTHON=/opt/bitnami/python/bin/python3
+export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+
+/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 /opt/bitnami/spark/jobs/load_logs_into_hive.py 2>&1 | tee -a "$LOG_FILE"
+
+exit_code=${PIPESTATUS[0]}
+
+if [ $exit_code -ne 0 ]; then
+  echo "Spark job FAILED!" | tee -a "$LOG_FILE"
+  exit 1
+else
+  echo "Spark job completed successfully." | tee -a "$LOG_FILE"
+fi
+
+Starting Spark job...
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/11 07:02:24 INFO SparkContext: Running Spark version 3.2.2
+25/04/11 07:02:24 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/04/11 07:02:24 INFO ResourceUtils: ==============================================================
+25/04/11 07:02:24 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/11 07:02:24 INFO ResourceUtils: ==============================================================
+25/04/11 07:02:24 INFO SparkContext: Submitted application: Load logs data into Hive
+25/04/11 07:02:24 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/11 07:02:24 INFO ResourceProfile: Limiting resource is cpu
+25/04/11 07:02:24 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/11 07:02:24 INFO SecurityManager: Changing view acls to: root
+25/04/11 07:02:24 INFO SecurityManager: Changing modify acls to: root
+25/04/11 07:02:24 INFO SecurityManager: Changing view acls groups to: 
+25/04/11 07:02:24 INFO SecurityManager: Changing modify acls groups to: 
+25/04/11 07:02:24 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/11 07:02:24 INFO Utils: Successfully started service 'sparkDriver' on port 43925.
+25/04/11 07:02:24 INFO SparkEnv: Registering MapOutputTracker
+25/04/11 07:02:24 INFO SparkEnv: Registering BlockManagerMaster
+25/04/11 07:02:24 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/11 07:02:24 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/11 07:02:24 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/11 07:02:25 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-447fe147-2263-4d07-a02e-5b53e358b0c7
+25/04/11 07:02:25 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/11 07:02:25 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/11 07:02:25 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+25/04/11 07:02:25 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+25/04/11 07:02:25 INFO Utils: Successfully started service 'SparkUI' on port 4042.
+25/04/11 07:02:25 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://b5b8e71ba50b:4042
+25/04/11 07:02:25 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/11 07:02:25 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.14:7077 after 23 ms (0 ms spent in bootstraps)
+25/04/11 07:02:25 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250411070225-0003
+25/04/11 07:02:25 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 35555.
+25/04/11 07:02:25 INFO NettyBlockTransferService: Server created on b5b8e71ba50b:35555
+25/04/11 07:02:25 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/11 07:02:25 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, b5b8e71ba50b, 35555, None)
+25/04/11 07:02:25 INFO BlockManagerMasterEndpoint: Registering block manager b5b8e71ba50b:35555 with 366.3 MiB RAM, BlockManagerId(driver, b5b8e71ba50b, 35555, None)
+25/04/11 07:02:25 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, b5b8e71ba50b, 35555, None)
+25/04/11 07:02:25 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, b5b8e71ba50b, 35555, None)
+25/04/11 07:02:25 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/11 07:02:25 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/11 07:02:25 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/11 07:02:26 INFO InMemoryFileIndex: It took 62 ms to list leaf files for 1 paths.
+25/04/11 07:02:26 INFO InMemoryFileIndex: It took 10 ms to list leaf files for 8 paths.
+25/04/11 07:02:28 INFO FileSourceStrategy: Pushed Filters: 
+25/04/11 07:02:28 INFO FileSourceStrategy: Post-Scan Filters: (length(trim(value#0, None)) > 0)
+25/04/11 07:02:28 INFO FileSourceStrategy: Output Data Schema: struct<value: string>
+25/04/11 07:02:28 INFO CodeGenerator: Code generated in 155.116449 ms
+25/04/11 07:02:28 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 345.7 KiB, free 366.0 MiB)
+25/04/11 07:02:29 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 32.5 KiB, free 365.9 MiB)
+25/04/11 07:02:29 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on b5b8e71ba50b:35555 (size: 32.5 KiB, free: 366.3 MiB)
+25/04/11 07:02:29 INFO SparkContext: Created broadcast 0 from csv at NativeMethodAccessorImpl.java:0
+25/04/11 07:02:29 INFO FileSourceScanExec: Planning scan with bin packing, max size: 16926376 bytes, open cost is considered as scanning 4194304 bytes.
+25/04/11 07:02:29 INFO SparkContext: Starting job: csv at NativeMethodAccessorImpl.java:0
+25/04/11 07:02:29 INFO DAGScheduler: Got job 0 (csv at NativeMethodAccessorImpl.java:0) with 1 output partitions
+25/04/11 07:02:29 INFO DAGScheduler: Final stage: ResultStage 0 (csv at NativeMethodAccessorImpl.java:0)
+25/04/11 07:02:29 INFO DAGScheduler: Parents of final stage: List()
+25/04/11 07:02:29 INFO DAGScheduler: Missing parents: List()
+25/04/11 07:02:29 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[3] at csv at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/04/11 07:02:29 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 11.6 KiB, free 365.9 MiB)
+25/04/11 07:02:29 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 5.8 KiB, free 365.9 MiB)
+25/04/11 07:02:29 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on b5b8e71ba50b:35555 (size: 5.8 KiB, free: 366.3 MiB)
+25/04/11 07:02:29 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1478
+25/04/11 07:02:29 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[3] at csv at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+25/04/11 07:02:29 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+25/04/11 07:02:44 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+25/04/11 07:02:59 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+25/04/11 07:03:14 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+Build was aborted
+Aborted by [8mha:////4NhrNatbXaQKljqXcoS9ngQQ7onYqNIevFDbkW/rMbA0AAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Finished: ABORTED

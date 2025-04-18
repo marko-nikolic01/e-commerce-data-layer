@@ -1,0 +1,266 @@
+Started by user [8mha:////4NhrNatbXaQKljqXcoS9ngQQ7onYqNIevFDbkW/rMbA0AAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/AnalyzeECommerceData
+[SSH] script:
+PATH="/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+JAVA_HOME="/opt/java/openjdk"
+HOME="/root"
+
+echo "Starting Spark job..." | tee -a spark_job.log
+
+LOG_FILE=/opt/bitnami/spark/logs/analyze_e_commerce_data.log
+
+export JAVA_HOME=/opt/bitnami/java
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$PATH:/opt/bitnami/python/bin
+export PYSPARK_PYTHON=/opt/bitnami/python/bin/python3
+export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+export POSTGRES_USER=postgres
+export POSTGRES_PASSWORD=postgres
+export POSTGRES_URI=jdbc:postgresql://postgres:5432
+export CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+
+/opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 --jars /opt/bitnami/spark/jars/postgresql-42.2.23.jar /opt/bitnami/spark/jobs/analyze_e_commerce_data.py 2>&1 | tee -a "$LOG_FILE"
+
+exit_code=${PIPESTATUS[0]}
+
+if [ $exit_code -ne 0 ]; then
+  echo "Spark job FAILED!" | tee -a "$LOG_FILE"
+  exit 1
+else
+  echo "Spark job completed successfully." | tee -a "$LOG_FILE"
+fi
+
+
+[SSH] executing...
+Starting Spark job...
+25/04/09 10:04:02 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/04/09 10:04:03 INFO SparkContext: Running Spark version 3.2.2
+25/04/09 10:04:03 INFO ResourceUtils: ==============================================================
+25/04/09 10:04:03 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/04/09 10:04:03 INFO ResourceUtils: ==============================================================
+25/04/09 10:04:03 INFO SparkContext: Submitted application: Analyze e-commerce data
+25/04/09 10:04:03 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/04/09 10:04:03 INFO ResourceProfile: Limiting resource is cpu
+25/04/09 10:04:03 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/04/09 10:04:03 INFO SecurityManager: Changing view acls to: root
+25/04/09 10:04:03 INFO SecurityManager: Changing modify acls to: root
+25/04/09 10:04:03 INFO SecurityManager: Changing view acls groups to: 
+25/04/09 10:04:03 INFO SecurityManager: Changing modify acls groups to: 
+25/04/09 10:04:03 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/04/09 10:04:03 INFO Utils: Successfully started service 'sparkDriver' on port 38367.
+25/04/09 10:04:03 INFO SparkEnv: Registering MapOutputTracker
+25/04/09 10:04:03 INFO SparkEnv: Registering BlockManagerMaster
+25/04/09 10:04:03 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/04/09 10:04:03 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/04/09 10:04:03 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/04/09 10:04:03 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-4effdc5d-1f39-4fdc-9815-bfd98bf5891f
+25/04/09 10:04:03 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/04/09 10:04:03 INFO SparkEnv: Registering OutputCommitCoordinator
+25/04/09 10:04:03 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/04/09 10:04:03 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://3fada93ce917:4040
+25/04/09 10:04:03 INFO SparkContext: Added JAR /opt/bitnami/spark/jars/postgresql-42.2.23.jar at spark://3fada93ce917:38367/jars/postgresql-42.2.23.jar with timestamp 1744193043045
+25/04/09 10:04:03 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/04/09 10:04:03 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.14:7077 after 22 ms (0 ms spent in bootstraps)
+25/04/09 10:04:03 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250409100403-0028
+25/04/09 10:04:03 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250409100403-0028/0 on worker-20250408075749-172.18.0.9-36639 (172.18.0.9:36639) with 4 core(s)
+25/04/09 10:04:03 INFO StandaloneSchedulerBackend: Granted executor ID app-20250409100403-0028/0 on hostPort 172.18.0.9:36639 with 4 core(s), 1024.0 MiB RAM
+25/04/09 10:04:03 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250409100403-0028/1 on worker-20250408075749-172.18.0.3-40933 (172.18.0.3:40933) with 4 core(s)
+25/04/09 10:04:03 INFO StandaloneSchedulerBackend: Granted executor ID app-20250409100403-0028/1 on hostPort 172.18.0.3:40933 with 4 core(s), 1024.0 MiB RAM
+25/04/09 10:04:03 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250409100403-0028/2 on worker-20250408075749-172.18.0.12-42009 (172.18.0.12:42009) with 4 core(s)
+25/04/09 10:04:03 INFO StandaloneSchedulerBackend: Granted executor ID app-20250409100403-0028/2 on hostPort 172.18.0.12:42009 with 4 core(s), 1024.0 MiB RAM
+25/04/09 10:04:03 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 32819.
+25/04/09 10:04:03 INFO NettyBlockTransferService: Server created on 3fada93ce917:32819
+25/04/09 10:04:03 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/04/09 10:04:03 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 3fada93ce917, 32819, None)
+25/04/09 10:04:03 INFO BlockManagerMasterEndpoint: Registering block manager 3fada93ce917:32819 with 366.3 MiB RAM, BlockManagerId(driver, 3fada93ce917, 32819, None)
+25/04/09 10:04:03 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250409100403-0028/0 is now RUNNING
+25/04/09 10:04:03 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250409100403-0028/1 is now RUNNING
+25/04/09 10:04:03 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250409100403-0028/2 is now RUNNING
+25/04/09 10:04:03 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 3fada93ce917, 32819, None)
+25/04/09 10:04:03 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 3fada93ce917, 32819, None)
+25/04/09 10:04:04 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/04/09 10:04:04 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/04/09 10:04:04 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/04/09 10:04:05 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/09 10:04:05 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/04/09 10:04:05 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/04/09 10:04:05 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/04/09 10:04:05 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/04/09 10:04:05 INFO metastore: Opened a connection to metastore, current connections: 1
+25/04/09 10:04:05 INFO metastore: Connected to metastore.
+25/04/09 10:04:05 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.9:51696) with ID 0,  ResourceProfileId 0
+25/04/09 10:04:05 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.3:51368) with ID 1,  ResourceProfileId 0
+25/04/09 10:04:05 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.12:57430) with ID 2,  ResourceProfileId 0
+25/04/09 10:04:05 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.9:34173 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.9, 34173, None)
+25/04/09 10:04:05 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.3:39161 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.3, 39161, None)
+25/04/09 10:04:05 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.12:40997 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.12, 40997, None)
+25/04/09 10:04:06 INFO InMemoryFileIndex: It took 55 ms to list leaf files for 1 paths.
+25/04/09 10:04:07 INFO InMemoryFileIndex: It took 2 ms to list leaf files for 1 paths.
+root
+ |-- SaleInvoiceNo: string (nullable = true)
+ |-- StockCode: string (nullable = true)
+ |-- ProductName: string (nullable = true)
+ |-- Quantity: integer (nullable = true)
+ |-- Price: decimal(21,5) (nullable = true)
+ |-- CustomerID: string (nullable = true)
+ |-- InvoiceDateTS: timestamp (nullable = true)
+
+root
+ |-- StockCode: string (nullable = true)
+ |-- SaleInvoiceNo: string (nullable = true)
+ |-- ProductName: string (nullable = true)
+ |-- Quantity: integer (nullable = true)
+ |-- Price: decimal(21,5) (nullable = true)
+ |-- InvoiceDateTS: string (nullable = false)
+ |-- CustomerID: void (nullable = true)
+
+Traceback (most recent call last):
+  File "/opt/bitnami/spark/jobs/analyze_e_commerce_data.py", line 180, in <module>
+    combined_sale_items = combined_sale_items \
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/dataframe.py", line 1733, in filter
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1321, in __call__
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/utils.py", line 117, in deco
+pyspark.sql.utils.AnalysisException: cannot resolve 'InvoiceDate' given input columns: [CustomerID, InvoiceDateTS, Price, ProductName, Quantity, SaleInvoiceNo, StockCode, approx_median, stddev, z_score];
+'Filter ((abs(z_score#496, false) > cast(2 as double)) AND ('InvoiceDate > 2025-04-09-06-00))
++- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, CustomerID#434, approx_median#442, stddev#461, (cast((Quantity#367 - approx_median#442) as double) / cast(stddev#461 as double)) AS z_score#496]
+   +- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, CustomerID#434, approx_median#442, stddev#461]
+      +- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, CustomerID#434, approx_median#442, _w0#478, stddev#461, stddev#461]
+         +- Window [stddev_samp(_w0#478) windowspecdefinition(StockCode#365, InvoiceDateTS#374 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), -1)) AS stddev#461], [StockCode#365], [InvoiceDateTS#374 ASC NULLS FIRST]
+            +- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, CustomerID#434, approx_median#442, cast(Quantity#367 as double) AS _w0#478]
+               +- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, CustomerID#434, approx_median#442]
+                  +- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, CustomerID#434, approx_median#442, approx_median#442]
+                     +- Window [percentile_approx(Quantity#367, cast(0.5 as double), 10000, 0, 0) windowspecdefinition(StockCode#365, InvoiceDateTS#374 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), -1)) AS approx_median#442], [StockCode#365], [InvoiceDateTS#374 ASC NULLS FIRST]
+                        +- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, CustomerID#434]
+                           +- Union false, false
+                              :- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, cast(CustomerID#381 as timestamp) AS CustomerID#434]
+                              :  +- Project [StockCode#365, SaleInvoiceNo#364, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, CustomerID#381]
+                              :     +- Join Inner, (StockCode#365 = StockCode#28)
+                              :        :- Project [SaleInvoiceNo#364, StockCode#365, ProductName#366, Quantity#367, Price#368, InvoiceDateTS#374, null AS CustomerID#381]
+                              :        :  +- Project [SaleInvoiceNo#364, StockCode#365, ProductName#366, Quantity#367, Price#368, 1900-01-01 AS InvoiceDateTS#374]
+                              :        :     +- Relation [SaleInvoiceNo#364,StockCode#365,ProductName#366,Quantity#367,Price#368] JDBCRelation(sale_items) [numPartitions=1]
+                              :        +- Deduplicate [StockCode#28]
+                              :           +- Project [StockCode#28]
+                              :              +- Project [SaleInvoiceNo#226, StockCode#28, ProductName#7, Quantity#29, Price#220, CustomerID#328, InvoiceDateTS#45]
+                              :                 +- Join LeftOuter, (SaleInvoiceNo#226 = InvoiceNo#325)
+                              :                    :- Project [InvoiceNo#27 AS SaleInvoiceNo#226, StockCode#28, ProductName#7, Quantity#29, Price#220]
+                              :                    :  +- Project [InvoiceNo#27, StockCode#28, ProductName#7, Quantity#29, CheckOverflow((promote_precision(cast(cast(Quantity#29 as decimal(10,0)) as decimal(15,5))) * promote_precision(cast(UnitPrice#9 as decimal(15,5)))), DecimalType(21,5), true) AS Price#220]
+                              :                    :     +- Join Inner, ((StockCode#28 = StockCode#6) AND (InvoiceDateShort#166 = date_format(cast(ProductDate#183 as timestamp), yyyy-MM-dd, Some(Etc/UTC))))
+                              :                    :        :- Project [CountryId#86, InvoiceNo#27, StockCode#28, Quantity#29, CustomerID#30, Country#31, InvoiceDate#32, InvoiceDateTS#45, RegionId#95, countryname#142, Region#154, date_format(InvoiceDateTS#45, yyyy-MM-dd, Some(Etc/UTC)) AS InvoiceDateShort#166]
+                              :                    :        :  +- Project [CountryId#86, InvoiceNo#27, StockCode#28, Quantity#29, CustomerID#30, Country#31, InvoiceDate#32, InvoiceDateTS#45, RegionId#95, countryname#142, get_region(RegionId#95) AS Region#154]
+                              :                    :        :     +- Project [CountryId#86, InvoiceNo#27, StockCode#28, Quantity#29, CustomerID#30, Country#31, InvoiceDate#32, InvoiceDateTS#45, RegionId#95, countryname#142]
+                              :                    :        :        +- Join Inner, (cast(CountryId#86 as int) = countryid#141)
+                              :                    :        :           :- Join LeftSemi, (cast(CountryId#86 as int) = CountryId#0)
+                              :                    :        :           :  :- Project [InvoiceNo#27, StockCode#28, Quantity#29, CustomerID#30, Country#31, InvoiceDate#32, InvoiceDateTS#45, CountryId#86, split(Country#31, -, -1)[1] AS RegionId#95]
+                              :                    :        :           :  :  +- Project [InvoiceNo#27, StockCode#28, Quantity#29, CustomerID#30, Country#31, InvoiceDate#32, InvoiceDateTS#45, split(Country#31, -, -1)[0] AS CountryId#86]
+                              :                    :        :           :  :     +- Union false, false
+                              :                    :        :           :  :        :- Filter ((InvoiceDateTS#45 >= to_timestamp(2025-04-09-06-00, Some(yyyy-MM-dd-HH-mm))) AND (InvoiceDateTS#45 <= to_timestamp(2025-04-09-10-00, Some(yyyy-MM-dd-HH-mm))))
+                              :                    :        :           :  :        :  +- Project [InvoiceNo#27, StockCode#28, Quantity#29, CustomerID#30, Country#31, InvoiceDate#32, to_timestamp('InvoiceDate, Some(yyyy-MM-dd-HH-mm)) AS InvoiceDateTS#45]
+                              :                    :        :           :  :        :     +- SubqueryAlias spark_catalog.default.logs
+                              :                    :        :           :  :        :        +- Relation default.logs[InvoiceNo#27,StockCode#28,Quantity#29,CustomerID#30,Country#31,InvoiceDate#32] parquet
+                              :                    :        :           :  :        +- Project [InvoiceNo#53, StockCode#54, Quantity#55, CustomerID#56, Country#57, InvoiceDate#58, to_timestamp('InvoiceDate, Some(yyyy-MM-dd-HH-mm)) AS InvoiceDateTS#71]
+                              :                    :        :           :  :           +- SubqueryAlias spark_catalog.default.unprocessedlogs
+                              :                    :        :           :  :              +- Relation default.unprocessedlogs[InvoiceNo#53,StockCode#54,Quantity#55,CustomerID#56,Country#57,InvoiceDate#58] parquet
+                              :                    :        :           :  +- SubqueryAlias spark_catalog.default.countries
+                              :                    :        :           :     +- Relation default.countries[countryid#0,countryname#1] parquet
+                              :                    :        :           +- SubqueryAlias spark_catalog.default.countries
+                              :                    :        :              +- Relation default.countries[countryid#141,countryname#142] parquet
+                              :                    :        +- Project [StockCode#6, UnitPrice#9, Date#21 AS ProductDate#183, ProductName#7]
+                              :                    :           +- Project [StockCode#6, UnitPrice#9, Date#21, ProductName#7]
+                              :                    :              +- Project [StockCode#6, ProductName#7, ProductDescription#8, UnitPrice#9, to_date('Date, Some(yyyy-MM-dd)) AS Date#21]
+                              :                    :                 +- SubqueryAlias spark_catalog.default.products
+                              :                    :                    +- Relation default.products[StockCode#6,ProductName#7,ProductDescription#8,UnitPrice#9,Date#10] parquet
+                              :                    +- Project [InvoiceNo#325, CustomerID#328, InvoiceDateTS#45]
+                              :                       +- Project [CountryId#86, InvoiceNo#325, StockCode#326, Quantity#327, CustomerID#328, Country#329, InvoiceDate#330, InvoiceDateTS#45, RegionId#95, countryname#340, Region#154, date_format(InvoiceDateTS#45, yyyy-MM-dd, Some(Etc/UTC)) AS InvoiceDateShort#166]
+                              :                          +- Project [CountryId#86, InvoiceNo#325, StockCode#326, Quantity#327, CustomerID#328, Country#329, InvoiceDate#330, InvoiceDateTS#45, RegionId#95, countryname#340, get_region(RegionId#95) AS Region#154]
+                              :                             +- Project [CountryId#86, InvoiceNo#325, StockCode#326, Quantity#327, CustomerID#328, Country#329, InvoiceDate#330, InvoiceDateTS#45, RegionId#95, countryname#340]
+                              :                                +- Join Inner, (cast(CountryId#86 as int) = countryid#339)
+                              :                                   :- Join LeftSemi, (cast(CountryId#86 as int) = CountryId#337)
+                              :                                   :  :- Project [InvoiceNo#325, StockCode#326, Quantity#327, CustomerID#328, Country#329, InvoiceDate#330, InvoiceDateTS#45, CountryId#86, split(Country#329, -, -1)[1] AS RegionId#95]
+                              :                                   :  :  +- Project [InvoiceNo#325, StockCode#326, Quantity#327, CustomerID#328, Country#329, InvoiceDate#330, InvoiceDateTS#45, split(Country#329, -, -1)[0] AS CountryId#86]
+                              :                                   :  :     +- Union false, false
+                              :                                   :  :        :- Filter ((InvoiceDateTS#45 >= to_timestamp(2025-04-09-06-00, Some(yyyy-MM-dd-HH-mm))) AND (InvoiceDateTS#45 <= to_timestamp(2025-04-09-10-00, Some(yyyy-MM-dd-HH-mm))))
+                              :                                   :  :        :  +- Project [InvoiceNo#325, StockCode#326, Quantity#327, CustomerID#328, Country#329, InvoiceDate#330, to_timestamp('InvoiceDate, Some(yyyy-MM-dd-HH-mm)) AS InvoiceDateTS#45]
+                              :                                   :  :        :     +- SubqueryAlias spark_catalog.default.logs
+                              :                                   :  :        :        +- Relation default.logs[InvoiceNo#325,StockCode#326,Quantity#327,CustomerID#328,Country#329,InvoiceDate#330] parquet
+                              :                                   :  :        +- Project [InvoiceNo#331, StockCode#332, Quantity#333, CustomerID#334, Country#335, InvoiceDate#336, to_timestamp('InvoiceDate, Some(yyyy-MM-dd-HH-mm)) AS InvoiceDateTS#71]
+                              :                                   :  :           +- SubqueryAlias spark_catalog.default.unprocessedlogs
+                              :                                   :  :              +- Relation default.unprocessedlogs[InvoiceNo#331,StockCode#332,Quantity#333,CustomerID#334,Country#335,InvoiceDate#336] parquet
+                              :                                   :  +- SubqueryAlias spark_catalog.default.countries
+                              :                                   :     +- Relation default.countries[countryid#337,countryname#338] parquet
+                              :                                   +- SubqueryAlias spark_catalog.default.countries
+                              :                                      +- Relation default.countries[countryid#339,countryname#340] parquet
+                              +- Project [SaleInvoiceNo#226, StockCode#398, ProductName#414, Quantity#399, Price#220, CustomerID#421, InvoiceDateTS#45]
+                                 +- Project [SaleInvoiceNo#226, StockCode#398, ProductName#414, Quantity#399, Price#220, CustomerID#421, InvoiceDateTS#45]
+                                    +- Join LeftOuter, (SaleInvoiceNo#226 = InvoiceNo#418)
+                                       :- Project [InvoiceNo#397 AS SaleInvoiceNo#226, StockCode#398, ProductName#414, Quantity#399, Price#220]
+                                       :  +- Project [InvoiceNo#397, StockCode#398, ProductName#414, Quantity#399, CheckOverflow((promote_precision(cast(cast(Quantity#399 as decimal(10,0)) as decimal(15,5))) * promote_precision(cast(UnitPrice#416 as decimal(15,5)))), DecimalType(21,5), true) AS Price#220]
+                                       :     +- Join Inner, ((StockCode#398 = StockCode#413) AND (InvoiceDateShort#166 = date_format(cast(ProductDate#183 as timestamp), yyyy-MM-dd, Some(Etc/UTC))))
+                                       :        :- Project [CountryId#86, InvoiceNo#397, StockCode#398, Quantity#399, CustomerID#400, Country#401, InvoiceDate#402, InvoiceDateTS#45, RegionId#95, countryname#412, Region#154, date_format(InvoiceDateTS#45, yyyy-MM-dd, Some(Etc/UTC)) AS InvoiceDateShort#166]
+                                       :        :  +- Project [CountryId#86, InvoiceNo#397, StockCode#398, Quantity#399, CustomerID#400, Country#401, InvoiceDate#402, InvoiceDateTS#45, RegionId#95, countryname#412, get_region(RegionId#95) AS Region#154]
+                                       :        :     +- Project [CountryId#86, InvoiceNo#397, StockCode#398, Quantity#399, CustomerID#400, Country#401, InvoiceDate#402, InvoiceDateTS#45, RegionId#95, countryname#412]
+                                       :        :        +- Join Inner, (cast(CountryId#86 as int) = countryid#411)
+                                       :        :           :- Join LeftSemi, (cast(CountryId#86 as int) = CountryId#409)
+                                       :        :           :  :- Project [InvoiceNo#397, StockCode#398, Quantity#399, CustomerID#400, Country#401, InvoiceDate#402, InvoiceDateTS#45, CountryId#86, split(Country#401, -, -1)[1] AS RegionId#95]
+                                       :        :           :  :  +- Project [InvoiceNo#397, StockCode#398, Quantity#399, CustomerID#400, Country#401, InvoiceDate#402, InvoiceDateTS#45, split(Country#401, -, -1)[0] AS CountryId#86]
+                                       :        :           :  :     +- Union false, false
+                                       :        :           :  :        :- Filter ((InvoiceDateTS#45 >= to_timestamp(2025-04-09-06-00, Some(yyyy-MM-dd-HH-mm))) AND (InvoiceDateTS#45 <= to_timestamp(2025-04-09-10-00, Some(yyyy-MM-dd-HH-mm))))
+                                       :        :           :  :        :  +- Project [InvoiceNo#397, StockCode#398, Quantity#399, CustomerID#400, Country#401, InvoiceDate#402, to_timestamp('InvoiceDate, Some(yyyy-MM-dd-HH-mm)) AS InvoiceDateTS#45]
+                                       :        :           :  :        :     +- SubqueryAlias spark_catalog.default.logs
+                                       :        :           :  :        :        +- Relation default.logs[InvoiceNo#397,StockCode#398,Quantity#399,CustomerID#400,Country#401,InvoiceDate#402] parquet
+                                       :        :           :  :        +- Project [InvoiceNo#403, StockCode#404, Quantity#405, CustomerID#406, Country#407, InvoiceDate#408, to_timestamp('InvoiceDate, Some(yyyy-MM-dd-HH-mm)) AS InvoiceDateTS#71]
+                                       :        :           :  :           +- SubqueryAlias spark_catalog.default.unprocessedlogs
+                                       :        :           :  :              +- Relation default.unprocessedlogs[InvoiceNo#403,StockCode#404,Quantity#405,CustomerID#406,Country#407,InvoiceDate#408] parquet
+                                       :        :           :  +- SubqueryAlias spark_catalog.default.countries
+                                       :        :           :     +- Relation default.countries[countryid#409,countryname#410] parquet
+                                       :        :           +- SubqueryAlias spark_catalog.default.countries
+                                       :        :              +- Relation default.countries[countryid#411,countryname#412] parquet
+                                       :        +- Project [StockCode#413, UnitPrice#416, Date#21 AS ProductDate#183, ProductName#414]
+                                       :           +- Project [StockCode#413, UnitPrice#416, Date#21, ProductName#414]
+                                       :              +- Project [StockCode#413, ProductName#414, ProductDescription#415, UnitPrice#416, to_date('Date, Some(yyyy-MM-dd)) AS Date#21]
+                                       :                 +- SubqueryAlias spark_catalog.default.products
+                                       :                    +- Relation default.products[StockCode#413,ProductName#414,ProductDescription#415,UnitPrice#416,Date#417] parquet
+                                       +- Project [InvoiceNo#418, CustomerID#421, InvoiceDateTS#45]
+                                          +- Project [CountryId#86, InvoiceNo#418, StockCode#419, Quantity#420, CustomerID#421, Country#422, InvoiceDate#423, InvoiceDateTS#45, RegionId#95, countryname#433, Region#154, date_format(InvoiceDateTS#45, yyyy-MM-dd, Some(Etc/UTC)) AS InvoiceDateShort#166]
+                                             +- Project [CountryId#86, InvoiceNo#418, StockCode#419, Quantity#420, CustomerID#421, Country#422, InvoiceDate#423, InvoiceDateTS#45, RegionId#95, countryname#433, get_region(RegionId#95) AS Region#154]
+                                                +- Project [CountryId#86, InvoiceNo#418, StockCode#419, Quantity#420, CustomerID#421, Country#422, InvoiceDate#423, InvoiceDateTS#45, RegionId#95, countryname#433]
+                                                   +- Join Inner, (cast(CountryId#86 as int) = countryid#432)
+                                                      :- Join LeftSemi, (cast(CountryId#86 as int) = CountryId#430)
+                                                      :  :- Project [InvoiceNo#418, StockCode#419, Quantity#420, CustomerID#421, Country#422, InvoiceDate#423, InvoiceDateTS#45, CountryId#86, split(Country#422, -, -1)[1] AS RegionId#95]
+                                                      :  :  +- Project [InvoiceNo#418, StockCode#419, Quantity#420, CustomerID#421, Country#422, InvoiceDate#423, InvoiceDateTS#45, split(Country#422, -, -1)[0] AS CountryId#86]
+                                                      :  :     +- Union false, false
+                                                      :  :        :- Filter ((InvoiceDateTS#45 >= to_timestamp(2025-04-09-06-00, Some(yyyy-MM-dd-HH-mm))) AND (InvoiceDateTS#45 <= to_timestamp(2025-04-09-10-00, Some(yyyy-MM-dd-HH-mm))))
+                                                      :  :        :  +- Project [InvoiceNo#418, StockCode#419, Quantity#420, CustomerID#421, Country#422, InvoiceDate#423, to_timestamp('InvoiceDate, Some(yyyy-MM-dd-HH-mm)) AS InvoiceDateTS#45]
+                                                      :  :        :     +- SubqueryAlias spark_catalog.default.logs
+                                                      :  :        :        +- Relation default.logs[InvoiceNo#418,StockCode#419,Quantity#420,CustomerID#421,Country#422,InvoiceDate#423] parquet
+                                                      :  :        +- Project [InvoiceNo#424, StockCode#425, Quantity#426, CustomerID#427, Country#428, InvoiceDate#429, to_timestamp('InvoiceDate, Some(yyyy-MM-dd-HH-mm)) AS InvoiceDateTS#71]
+                                                      :  :           +- SubqueryAlias spark_catalog.default.unprocessedlogs
+                                                      :  :              +- Relation default.unprocessedlogs[InvoiceNo#424,StockCode#425,Quantity#426,CustomerID#427,Country#428,InvoiceDate#429] parquet
+                                                      :  +- SubqueryAlias spark_catalog.default.countries
+                                                      :     +- Relation default.countries[countryid#430,countryname#431] parquet
+                                                      +- SubqueryAlias spark_catalog.default.countries
+                                                         +- Relation default.countries[countryid#432,countryname#433] parquet
+
+25/04/09 10:04:08 INFO SparkContext: Invoking stop() from shutdown hook
+25/04/09 10:04:08 INFO SparkUI: Stopped Spark web UI at http://3fada93ce917:4040
+25/04/09 10:04:08 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/04/09 10:04:08 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/04/09 10:04:08 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/04/09 10:04:08 INFO MemoryStore: MemoryStore cleared
+25/04/09 10:04:08 INFO BlockManager: BlockManager stopped
+25/04/09 10:04:08 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/04/09 10:04:08 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/04/09 10:04:08 INFO SparkContext: Successfully stopped SparkContext
+25/04/09 10:04:08 INFO ShutdownHookManager: Shutdown hook called
+25/04/09 10:04:08 INFO ShutdownHookManager: Deleting directory /tmp/spark-16e4ebdb-4d09-40fb-9467-5f2c34e09638
+25/04/09 10:04:08 INFO ShutdownHookManager: Deleting directory /tmp/spark-27c49c08-9163-4cf9-a674-958c1aba48a0
+25/04/09 10:04:08 INFO ShutdownHookManager: Deleting directory /tmp/spark-16e4ebdb-4d09-40fb-9467-5f2c34e09638/pyspark-69ae0798-6a67-49c3-8987-d1028245b3a0
+Spark job FAILED!
+
+[SSH] completed
+[SSH] exit-status: 1
+
+Build step 'Execute shell script on remote host using ssh' marked build as failure
+Sending e-mails to: nikolicmarko1243@gmail.com
+Finished: FAILURE

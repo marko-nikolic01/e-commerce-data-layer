@@ -134,12 +134,15 @@ services:
       - "9090:8080"
       - "7077:7077"
       - "2222:22"
+      - "4040:4040" 
     env_file:
       - ./spark/spark.env
     volumes: 
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
-      - ./jenkins/logs:/opt/bitnami/spark/logs 
+      - ./jenkins/logs:/opt/bitnami/spark/logs
+    depends_on:
+      - postgres
     networks:
       - shared_network
 
@@ -148,6 +151,8 @@ services:
       context: ./spark
       dockerfile: Dockerfile
     container_name: spark-worker1
+    ports:
+      - "4041:4040" 
     environment:
       - SPARK_MODE=worker
       - SPARK_WORKER_CORES=4
@@ -158,7 +163,7 @@ services:
     volumes: 
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
-      - ./jenkins/logs:/opt/bitnami/spark/logs 
+      - ./jenkins/logs:/opt/bitnami/spark/logs
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     networks:
       - shared_network
@@ -168,6 +173,8 @@ services:
       context: ./spark
       dockerfile: Dockerfile
     container_name: spark-worker2
+    ports:
+      - "4042:4040" 
     environment:
       - SPARK_MODE=worker
       - SPARK_WORKER_CORES=4
@@ -178,7 +185,7 @@ services:
     volumes: 
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
-      - ./jenkins/logs:/opt/bitnami/spark/logs 
+      - ./jenkins/logs:/opt/bitnami/spark/logs
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     networks:
       - shared_network
@@ -188,6 +195,8 @@ services:
       context: ./spark
       dockerfile: Dockerfile
     container_name: spark-worker3
+    ports:
+      - "4043:4040" 
     environment:
       - SPARK_MODE=worker
       - SPARK_WORKER_CORES=4
@@ -198,7 +207,7 @@ services:
     volumes: 
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
-      - ./jenkins/logs:/opt/bitnami/spark/logs 
+      - ./jenkins/logs:/opt/bitnami/spark/logs
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     networks:
       - shared_network
@@ -216,6 +225,35 @@ services:
     networks:
       - shared_network
 
+  postgres:
+    image: postgres:14.0
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ecommerce
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - shared_network
+    restart: always
+
+  metabase:
+    image: metabase/metabase:v0.53.x
+    container_name: metabase
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./metabase/metabase_data/:/metabase-data
+    env_file:
+      - ./metabase/metabase.env
+    networks:
+      - shared_network
+
 volumes:
   hadoop_namenode: {}
   hadoop_datanode1: {}
@@ -228,6 +266,7 @@ volumes:
   nifi_provenance_repository: {}
   nifi_state: {}
   nifi_registry: {}
+  postgres_data: {}
 
 networks:
   shared_network:
