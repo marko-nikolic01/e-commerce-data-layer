@@ -134,12 +134,13 @@ services:
       - "9090:8080"
       - "7077:7077"
       - "2222:22"
+      - "4040:4040" 
     env_file:
       - ./spark/spark.env
     volumes: 
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
-      - ./jenkins/logs:/opt/bitnami/spark/logs 
+      - ./jenkins/logs:/opt/bitnami/spark/logs
     depends_on:
       - postgres
     networks:
@@ -150,6 +151,8 @@ services:
       context: ./spark
       dockerfile: Dockerfile
     container_name: spark-worker1
+    ports:
+      - "4041:4040" 
     environment:
       - SPARK_MODE=worker
       - SPARK_WORKER_CORES=4
@@ -160,7 +163,7 @@ services:
     volumes: 
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
-      - ./jenkins/logs:/opt/bitnami/spark/logs 
+      - ./jenkins/logs:/opt/bitnami/spark/logs
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     networks:
       - shared_network
@@ -170,6 +173,8 @@ services:
       context: ./spark
       dockerfile: Dockerfile
     container_name: spark-worker2
+    ports:
+      - "4042:4040" 
     environment:
       - SPARK_MODE=worker
       - SPARK_WORKER_CORES=4
@@ -180,7 +185,7 @@ services:
     volumes: 
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
-      - ./jenkins/logs:/opt/bitnami/spark/logs 
+      - ./jenkins/logs:/opt/bitnami/spark/logs
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     networks:
       - shared_network
@@ -190,6 +195,8 @@ services:
       context: ./spark
       dockerfile: Dockerfile
     container_name: spark-worker3
+    ports:
+      - "4043:4040" 
     environment:
       - SPARK_MODE=worker
       - SPARK_WORKER_CORES=4
@@ -200,7 +207,7 @@ services:
     volumes: 
       - ./spark/scripts:/opt/bitnami/spark/jobs
       - ./spark/hive/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml
-      - ./jenkins/logs:/opt/bitnami/spark/logs 
+      - ./jenkins/logs:/opt/bitnami/spark/logs
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     networks:
       - shared_network
