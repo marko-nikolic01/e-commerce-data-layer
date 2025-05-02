@@ -337,6 +337,16 @@ Containerization of the application was achieved using Docker and Docker Compose
   <img src="https://github.com/user-attachments/assets/5b1fd6a3-22b3-464c-b01a-2fd035f74bbd" alt="Docker_logo" />
 </p>
 
+### Data Generator
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6ba9ec8a-e005-4633-b365-408bec307153" alt="Python-logo-notext svg" />
+</p>
+
+The Data Generator setup consists of the following containers:
+
+- **data-generator** (`python:3.13-slim`):
+  - Generates data periodically.
+
 ### Apache NiFi
 <p align="center">
   <img alt="Kaggle_Logo" src="https://github.com/user-attachments/assets/1b8dcb5f-2b06-43c7-a61b-aea6fee4b0cc" />
