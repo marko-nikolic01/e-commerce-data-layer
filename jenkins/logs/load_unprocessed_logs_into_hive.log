@@ -11623,3 +11623,154 @@ Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
 25/04/16 00:10:55 INFO ShutdownHookManager: Deleting directory /tmp/spark-3c7d2257-4d8f-45ee-8a10-4158b3ceaed9
 25/04/16 00:10:55 INFO ShutdownHookManager: Deleting directory /tmp/spark-967196ce-a726-4587-b6d5-4079fa862028
 Spark job completed successfully.
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+25/05/01 16:11:01 INFO SparkContext: Running Spark version 3.2.2
+25/05/01 16:11:01 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/01 16:11:02 INFO ResourceUtils: ==============================================================
+25/05/01 16:11:02 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/01 16:11:02 INFO ResourceUtils: ==============================================================
+25/05/01 16:11:02 INFO SparkContext: Submitted application: Load unprocessed logs data into Hive
+25/05/01 16:11:02 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/01 16:11:02 INFO ResourceProfile: Limiting resource is cpu
+25/05/01 16:11:02 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/01 16:11:02 INFO SecurityManager: Changing view acls to: root
+25/05/01 16:11:02 INFO SecurityManager: Changing modify acls to: root
+25/05/01 16:11:02 INFO SecurityManager: Changing view acls groups to: 
+25/05/01 16:11:02 INFO SecurityManager: Changing modify acls groups to: 
+25/05/01 16:11:02 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+25/05/01 16:11:02 INFO Utils: Successfully started service 'sparkDriver' on port 40271.
+25/05/01 16:11:02 INFO SparkEnv: Registering MapOutputTracker
+25/05/01 16:11:02 INFO SparkEnv: Registering BlockManagerMaster
+25/05/01 16:11:02 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/01 16:11:02 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/01 16:11:02 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/01 16:11:02 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-ba79a97f-91b4-4f71-8381-eb476717d91c
+25/05/01 16:11:02 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/05/01 16:11:02 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/01 16:11:02 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/01 16:11:02 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10b19a000e27:4040
+25/05/01 16:11:02 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+25/05/01 16:11:02 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.14:7077 after 23 ms (0 ms spent in bootstraps)
+25/05/01 16:11:02 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250501161102-0002
+25/05/01 16:11:02 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250501161102-0002/0 on worker-20250501142941-172.18.0.10-38725 (172.18.0.10:38725) with 4 core(s)
+25/05/01 16:11:02 INFO StandaloneSchedulerBackend: Granted executor ID app-20250501161102-0002/0 on hostPort 172.18.0.10:38725 with 4 core(s), 1024.0 MiB RAM
+25/05/01 16:11:02 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250501161102-0002/1 on worker-20250501142941-172.18.0.5-40915 (172.18.0.5:40915) with 4 core(s)
+25/05/01 16:11:02 INFO StandaloneSchedulerBackend: Granted executor ID app-20250501161102-0002/1 on hostPort 172.18.0.5:40915 with 4 core(s), 1024.0 MiB RAM
+25/05/01 16:11:02 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250501161102-0002/2 on worker-20250501142941-172.18.0.11-40927 (172.18.0.11:40927) with 4 core(s)
+25/05/01 16:11:02 INFO StandaloneSchedulerBackend: Granted executor ID app-20250501161102-0002/2 on hostPort 172.18.0.11:40927 with 4 core(s), 1024.0 MiB RAM
+25/05/01 16:11:02 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34469.
+25/05/01 16:11:02 INFO NettyBlockTransferService: Server created on 10b19a000e27:34469
+25/05/01 16:11:02 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/01 16:11:02 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10b19a000e27, 34469, None)
+25/05/01 16:11:02 INFO BlockManagerMasterEndpoint: Registering block manager 10b19a000e27:34469 with 366.3 MiB RAM, BlockManagerId(driver, 10b19a000e27, 34469, None)
+25/05/01 16:11:02 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10b19a000e27, 34469, None)
+25/05/01 16:11:02 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10b19a000e27, 34469, None)
+25/05/01 16:11:02 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250501161102-0002/2 is now RUNNING
+25/05/01 16:11:02 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250501161102-0002/1 is now RUNNING
+25/05/01 16:11:02 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250501161102-0002/0 is now RUNNING
+25/05/01 16:11:03 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/05/01 16:11:03 INFO SharedState: spark.sql.warehouse.dir is not set, but hive.metastore.warehouse.dir is set. Setting spark.sql.warehouse.dir to the value of hive.metastore.warehouse.dir.
+25/05/01 16:11:03 INFO SharedState: Warehouse path is 'file:/user/hive/warehouse'.
+25/05/01 16:11:04 INFO InMemoryFileIndex: It took 70 ms to list leaf files for 1 paths.
+25/05/01 16:11:04 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.11:33278) with ID 2,  ResourceProfileId 0
+25/05/01 16:11:04 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.10:43480) with ID 0,  ResourceProfileId 0
+25/05/01 16:11:04 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.5:60768) with ID 1,  ResourceProfileId 0
+25/05/01 16:11:04 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.11:38797 with 366.3 MiB RAM, BlockManagerId(2, 172.18.0.11, 38797, None)
+25/05/01 16:11:04 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.10:35677 with 366.3 MiB RAM, BlockManagerId(0, 172.18.0.10, 35677, None)
+25/05/01 16:11:04 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.5:39227 with 366.3 MiB RAM, BlockManagerId(1, 172.18.0.5, 39227, None)
+25/05/01 16:11:04 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+25/05/01 16:11:04 INFO DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+25/05/01 16:11:04 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
+25/05/01 16:11:04 INFO DAGScheduler: Parents of final stage: List()
+25/05/01 16:11:04 INFO DAGScheduler: Missing parents: List()
+25/05/01 16:11:04 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/05/01 16:11:04 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 100.3 KiB, free 366.2 MiB)
+25/05/01 16:11:04 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 35.7 KiB, free 366.2 MiB)
+25/05/01 16:11:04 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10b19a000e27:34469 (size: 35.7 KiB, free: 366.3 MiB)
+25/05/01 16:11:04 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1478
+25/05/01 16:11:04 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+25/05/01 16:11:04 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+25/05/01 16:11:05 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.18.0.10, executor 0, partition 0, PROCESS_LOCAL, 4655 bytes) taskResourceAssignments Map()
+25/05/01 16:11:05 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.18.0.10:35677 (size: 35.7 KiB, free: 366.3 MiB)
+25/05/01 16:11:06 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1209 ms on 172.18.0.10 (executor 0) (1/1)
+25/05/01 16:11:06 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+25/05/01 16:11:06 INFO DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) finished in 1.301 s
+25/05/01 16:11:06 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+25/05/01 16:11:06 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+25/05/01 16:11:06 INFO DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 1.333631 s
+25/05/01 16:11:06 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 10b19a000e27:34469 in memory (size: 35.7 KiB, free: 366.3 MiB)
+25/05/01 16:11:06 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 172.18.0.10:35677 in memory (size: 35.7 KiB, free: 366.3 MiB)
+25/05/01 16:11:07 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/05/01 16:11:07 INFO HiveUtils: Initializing HiveMetastoreConnection version 2.3.9 using Spark classes.
+25/05/01 16:11:07 INFO HiveConf: Found configuration file file:/opt/bitnami/spark/conf/hive-site.xml
+25/05/01 16:11:07 INFO HiveClientImpl: Warehouse location for Hive client (version 2.3.9) is file:/user/hive/warehouse
+25/05/01 16:11:07 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/05/01 16:11:07 INFO metastore: Opened a connection to metastore, current connections: 1
+25/05/01 16:11:07 INFO metastore: Connected to metastore.
+25/05/01 16:11:08 INFO InMemoryFileIndex: It took 3 ms to list leaf files for 1 paths.
+25/05/01 16:11:09 INFO SQLStdHiveAccessController: Created SQLStdHiveAccessController for session context : HiveAuthzSessionContext [sessionString=38053861-b781-4b16-96ad-de055794dd79, clientType=HIVECLI]
+25/05/01 16:11:09 WARN SessionState: METASTORE_FILTER_HOOK will be ignored, since hive.security.authorization.manager is set to instance of HiveAuthorizerFactory.
+25/05/01 16:11:09 INFO metastore: Mestastore configuration hive.metastore.filter.hook changed from org.apache.hadoop.hive.metastore.DefaultMetaStoreFilterHookImpl to org.apache.hadoop.hive.ql.security.authorization.plugin.AuthorizationMetaStoreFilterHook
+25/05/01 16:11:09 INFO metastore: Closed a connection to metastore, current connections: 0
+25/05/01 16:11:09 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/05/01 16:11:09 INFO metastore: Opened a connection to metastore, current connections: 1
+25/05/01 16:11:09 INFO metastore: Connected to metastore.
+25/05/01 16:11:09 INFO metastore: Trying to connect to metastore with URI thrift://hive-metastore:9083
+25/05/01 16:11:09 INFO metastore: Opened a connection to metastore, current connections: 2
+25/05/01 16:11:09 INFO metastore: Connected to metastore.
+25/05/01 16:11:09 INFO InMemoryFileIndex: It took 1 ms to list leaf files for 1 paths.
+25/05/01 16:11:09 INFO FileSourceStrategy: Pushed Filters: 
+25/05/01 16:11:09 INFO FileSourceStrategy: Post-Scan Filters: 
+25/05/01 16:11:09 INFO FileSourceStrategy: Output Data Schema: struct<InvoiceNo: string, StockCode: string, Quantity: int, CustomerID: string, Country: string ... 1 more field>
+25/05/01 16:11:09 INFO ParquetFileFormat: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+25/05/01 16:11:09 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+25/05/01 16:11:09 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+25/05/01 16:11:09 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+25/05/01 16:11:09 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+25/05/01 16:11:09 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+25/05/01 16:11:09 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+25/05/01 16:11:09 INFO CodeGenerator: Code generated in 152.038934 ms
+25/05/01 16:11:09 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 350.7 KiB, free 366.0 MiB)
+25/05/01 16:11:09 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 33.8 KiB, free 365.9 MiB)
+25/05/01 16:11:09 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10b19a000e27:34469 (size: 33.8 KiB, free: 366.3 MiB)
+25/05/01 16:11:09 INFO SparkContext: Created broadcast 1 from insertInto at NativeMethodAccessorImpl.java:0
+25/05/01 16:11:09 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/05/01 16:11:09 INFO SparkContext: Starting job: insertInto at NativeMethodAccessorImpl.java:0
+25/05/01 16:11:09 INFO DAGScheduler: Got job 1 (insertInto at NativeMethodAccessorImpl.java:0) with 1 output partitions
+25/05/01 16:11:09 INFO DAGScheduler: Final stage: ResultStage 1 (insertInto at NativeMethodAccessorImpl.java:0)
+25/05/01 16:11:09 INFO DAGScheduler: Parents of final stage: List()
+25/05/01 16:11:09 INFO DAGScheduler: Missing parents: List()
+25/05/01 16:11:09 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[4] at insertInto at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/05/01 16:11:09 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 211.3 KiB, free 365.7 MiB)
+25/05/01 16:11:09 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 74.7 KiB, free 365.6 MiB)
+25/05/01 16:11:09 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10b19a000e27:34469 (size: 74.7 KiB, free: 366.2 MiB)
+25/05/01 16:11:09 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1478
+25/05/01 16:11:09 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[4] at insertInto at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+25/05/01 16:11:09 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+25/05/01 16:11:09 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (172.18.0.5, executor 1, partition 0, ANY, 4932 bytes) taskResourceAssignments Map()
+25/05/01 16:11:09 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.18.0.5:39227 (size: 74.7 KiB, free: 366.2 MiB)
+25/05/01 16:11:11 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.18.0.5:39227 (size: 33.8 KiB, free: 366.2 MiB)
+25/05/01 16:11:11 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 2030 ms on 172.18.0.5 (executor 1) (1/1)
+25/05/01 16:11:11 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+25/05/01 16:11:11 INFO DAGScheduler: ResultStage 1 (insertInto at NativeMethodAccessorImpl.java:0) finished in 2.057 s
+25/05/01 16:11:11 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+25/05/01 16:11:11 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+25/05/01 16:11:11 INFO DAGScheduler: Job 1 finished: insertInto at NativeMethodAccessorImpl.java:0, took 2.062998 s
+25/05/01 16:11:11 INFO FileFormatWriter: Start to commit write Job 47f76d27-0097-429a-9391-cfe31ccbbc77.
+25/05/01 16:11:11 INFO FileFormatWriter: Write Job 47f76d27-0097-429a-9391-cfe31ccbbc77 committed. Elapsed time: 41 ms.
+25/05/01 16:11:11 INFO FileFormatWriter: Finished processing stats for write job 47f76d27-0097-429a-9391-cfe31ccbbc77.
+25/05/01 16:11:11 INFO InMemoryFileIndex: It took 3 ms to list leaf files for 1 paths.
+25/05/01 16:11:11 INFO SparkUI: Stopped Spark web UI at http://10b19a000e27:4040
+25/05/01 16:11:11 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/05/01 16:11:11 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+25/05/01 16:11:11 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/05/01 16:11:11 INFO MemoryStore: MemoryStore cleared
+25/05/01 16:11:11 INFO BlockManager: BlockManager stopped
+25/05/01 16:11:11 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/05/01 16:11:11 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/05/01 16:11:11 INFO SparkContext: Successfully stopped SparkContext
+25/05/01 16:11:12 INFO ShutdownHookManager: Shutdown hook called
+25/05/01 16:11:12 INFO ShutdownHookManager: Deleting directory /tmp/spark-37c123c9-74ed-4809-9f22-b374060ec70c
+25/05/01 16:11:12 INFO ShutdownHookManager: Deleting directory /tmp/spark-72987007-83ec-4b9d-9508-9c9fd684a652
+25/05/01 16:11:12 INFO ShutdownHookManager: Deleting directory /tmp/spark-72987007-83ec-4b9d-9508-9c9fd684a652/pyspark-fc763db7-f48b-4a73-af52-ae0553ccf6b2
+Spark job completed successfully.

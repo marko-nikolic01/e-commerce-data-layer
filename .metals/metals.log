@@ -1,0 +1,58 @@
+2025.05.02 11:58:33 INFO  no build target found for /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5[0m
+2025.05.02 11:58:34 INFO  no build target found for /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5[0m
+2025.05.02 11:58:36 INFO  Running List(/home/marko/.local/share/coursier/bin/scala-cli, setup-ide, /home/marko/Documents/GitHub/e-commerce-data-layer)[0m
+2025.05.02 11:58:36 INFO  Attempting to connect to the build server...[0m
+2025.05.02 11:58:36 INFO  Running BSP server List(/home/marko/.local/share/coursier/bin/.scala-cli.aux, bsp, --json-options, /home/marko/Documents/GitHub/e-commerce-data-layer/.scala-build/ide-options-v2.json, --json-launcher-options, /home/marko/Documents/GitHub/e-commerce-data-layer/.scala-build/ide-launcher-options.json, --envs-file, /home/marko/Documents/GitHub/e-commerce-data-layer/.scala-build/ide-envs.json, /home/marko/Documents/GitHub/e-commerce-data-layer)[0m
+2025.05.02 11:58:36 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/marko/Documents/GitHub/e-commerce-data-layer/.metals/bsp.trace.json or /home/marko/.cache/metals/bsp.trace.json[0m
+2025.05.02 11:58:37 INFO  no build target found for /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt. Using presentation compiler with project's scala-library version: 3.3.5[0m
+2025.05.02 11:58:38 INFO  time: Connected to build server in 1.51s[0m
+2025.05.02 11:58:38 INFO  Connected to Build server: scala-cli v1.6.2[0m
+2025.05.02 11:58:38 INFO  compiling e-commerce-data-layer_d5c0a6989e (3 scala sources)[0m
+2025.05.02 11:58:40 INFO  time: compiled e-commerce-data-layer_d5c0a6989e in 1.98s[0m
+2025.05.02 11:58:40 INFO  compiling e-commerce-data-layer_d5c0a6989e (3 scala sources)[0m
+2025.05.02 11:58:41 WARN  Could not find java sources in /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip. Java symbols will not be available.[0m
+2025.05.02 11:58:41 INFO  time: compiled e-commerce-data-layer_d5c0a6989e in 1.11s[0m
+2025.05.02 11:58:41 INFO  time: indexed workspace in 4.05s[0m
+2025.05.02 11:58:41 WARN  no build target for: /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt[0m
+2025.05.02 11:58:42 INFO  no build target found for /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt. Using presentation compiler with project's scala-library version: 3.6.3[0m
+2025.05.02 11:58:42 INFO  no build target found for /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt. Using presentation compiler with project's scala-library version: 3.6.3[0m
+2025.05.02 11:58:42 WARN  no build target for: /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt[0m
+2025.05.02 11:58:44 INFO  time: code lens generation in 1.52s[0m
+2025.05.02 11:58:44 INFO  time: code lens generation in 1.79s[0m
+2025.05.02 11:58:44 INFO  no build target found for /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt. Using presentation compiler with project's scala-library version: 3.6.3[0m
+2025.05.02 11:58:49 INFO  no build target found for /home/marko/Documents/GitHub/e-commerce-data-layer/spark/scripts/loadcountriesintohive/build.sbt. Using presentation compiler with project's scala-library version: 3.6.3[0m
+May 02, 2025 12:11:46 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+May 02, 2025 12:26:11 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2025.05.02 12:47:55 INFO  compiling e-commerce-data-layer_d5c0a6989e (3 scala sources)[0m
+2025.05.02 12:47:57 INFO  time: compiled e-commerce-data-layer_d5c0a6989e in 2.17s[0m
+May 02, 2025 1:20:14 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2025.05.02 15:00:34 INFO  Shutting down server[0m
+2025.05.02 15:00:34 INFO  shutting down Metals[0m
+2025.05.02 15:00:34 INFO  Shut down connection with build server.[0m
+2025.05.02 15:00:34 INFO  BSP server: May 02, 2025 3:00:34 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification[0m
+2025.05.02 15:00:34 INFO  BSP server: WARNING: Notification threw an exception: {[0m
+2025.05.02 15:00:34 INFO  BSP server:   "jsonrpc": "2.0",[0m
+2025.05.02 15:00:34 INFO  BSP server:   "method": "build/exit",[0m
+2025.05.02 15:00:34 INFO  BSP server:   "params": null[0m
+2025.05.02 15:00:34 INFO  BSP server: }[0m
+2025.05.02 15:00:34 INFO  BSP server: java.lang.RuntimeException: java.lang.reflect.InvocationTargetException[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at java.base@17.0.6/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at java.base@17.0.6/java.util.concurrent.FutureTask.run(FutureTask.java:264)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at java.base@17.0.6/java.lang.Thread.run(Thread.java:833)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:775)[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at com.oracle.svm.core.posix.thread.PosixPlatformThreads.pthreadStartRoutine(PosixPlatformThreads.java:203)[0m
+2025.05.02 15:00:34 INFO  BSP server: Caused by: java.lang.reflect.InvocationTargetException[0m
+2025.05.02 15:00:34 INFO  BSP server: 	at java.base@17.0.6/java.lang.reflect.Method.invoke(Method.java:568)[0m
+2025.05.02 15:00:34 INFO  Exiting server[0m
